@@ -1,0 +1,69 @@
+[2021-07-19 05:35 Europe/Berlin] HTTP request of validation request:POST /cgi-bin/webscr HTTP/1.1
+Host: www.sandbox.paypal.com
+Accept: */*
+Connection: Close
+Content-Length: 789
+Content-Type: application/x-www-form-urlencoded
+
+ for IPN payload: cmd=_notify-validate&mc_gross=1.00&protection_eligibility=Eligible&payer_id=EQXL6PEBKF5FW&payment_date=20%3A35%3A35+Jul+18%2C+2021+PDT&payment_status=Completed&charset=windows-1252&first_name=Daniel&mc_fee=0.38&notify_version=3.9&custom=&payer_status=unverified&business=superbem%40gmail.com&quantity=1&verify_sign=A1K9fbA1ef1Izp69094fmCeBIKD0AgVfWd-cs5P.PZ10bc6J1e64VnwL&payer_email=danielchanfana%40gmail.com&txn_id=3A4389557Y3146933&payment_type=instant&last_name=Santos&receiver_email=superbem%40gmail.com&payment_fee=&shipping_discount=0.00&receiver_id=D43YUS35G6K6U&insurance_amount=0.00&txn_type=web_accept&item_name=Camera&discount=0.00&mc_currency=EUR&item_number=CAM%23N1&residence_country=PT&shipping_method=Default&transaction_subject=&payment_gross=&ipn_track_id=381e787c6ea9c
+[2021-07-19 05:35 Europe/Berlin] HTTP response of validation request: HTTP/1.1 400 Bad Request
+Connection: close
+Content-Length: 226
+Content-Type: text/html; charset=iso-8859-1
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Paypal-Debug-Id: bc083f302b9fa
+Set-Cookie: ts=vreXpYrS%3D1721360145%26vteXpYrS%3D1626667545%26vr%3Dbcd57e4017a0a6020606f2bafdeb82ce%26vt%3Dbcd57e4017a0a6020606f2bafdeb82cd%26vtyp%3Dnew; Path=/; Domain=paypal.com; Expires=Thu, 18 Jul 2024 03:35:45 GMT; HttpOnly; Secure
+Set-Cookie: ts_c=vr%3Dbcd57e4017a0a6020606f2bafdeb82ce%26vt%3Dbcd57e4017a0a6020606f2bafdeb82cd; Path=/; Domain=paypal.com; Expires=Thu, 18 Jul 2024 03:35:45 GMT; Secure
+Accept-Ranges: bytes
+Via: 1.1 varnish, 1.1 varnish
+Date: Mon, 19 Jul 2021 03:35:46 GMT
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Served-By: cache-lhr7360-LHR, cache-mad22079-MAD
+X-Cache: MISS, MISS
+X-Cache-Hits: 0, 0
+X-Timer: S1626665746.908091,VS0,VE155
+Set-Cookie: x-cdn=fastly:MAD; Domain=paypal.com; Path=/; Secure
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>400 Bad Request</title>
+</head><body>
+<h1>Bad Request</h1>
+<p>Your browser sent a request that this server could not understand.<br />
+</p>
+</body></html>
+
+[2021-07-24 00:14 Europe/Berlin] HTTP request of validation request:POST /cgi-bin/webscr HTTP/1.1
+Host: www.sandbox.paypal.com
+Accept: */*
+Connection: Close
+Content-Length: 20
+Content-Type: application/x-www-form-urlencoded
+
+ for IPN payload: cmd=_notify-validate
+[2021-07-24 00:14 Europe/Berlin] HTTP response of validation request: HTTP/1.1 200 OK
+Connection: close
+Content-Type: text/html; charset=UTF-8
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Paypal-Debug-Id: 9bb179e49c3c9
+Set-Cookie: c9MWDuvPtT9GIMyPc3jwol1VSlO=_3LO92wsi6XnAUGmSF--bszJDwnFaUrpcvvFhUYVTTysbdTTbs75PIyozY27yZTLIZY3VqHjHUuX5Vutt69CAJnsXDlJlz9gy49vZpf6tV35A2JnY27ERU0PiRpfbZ8tLFDmnv6TRL0nKOclF_kImfhvMRjQlGZaorYYerG-eim3SP_x5e8UMq6hb7NneHIyw2tO2YwSZPizZTzkiLeuk843cEtZvO9TaHIQlzfrWtF50V7ZtRLZAmqFMmvSDoOwhE_0b1WgpdzN0ZUv_4eiSt-b8PHR_Ljy7rxp3z5iQKvSrm5oRX3LC6hn-5210SCc_bBWwGaB7CSkh3taff8Y5ZrT9IqQmlu0jT4F3xg1HlqRnrYNVZ5kwytfb5zfCFba_kevJkqoXm2PY15stIoy_EFkWR_gQR5bNkEynrnwrcq6IESxuxiZLyI8FE4; domain=.paypal.com; path=/; Secure; HttpOnly
+Set-Cookie: cookie_check=yes; expires=Mon, 21-Jul-2031 22:14:57 GMT; domain=.paypal.com; path=/; Secure; HttpOnly
+Set-Cookie: navcmd=_notify-validate; domain=.paypal.com; path=/; Secure; HttpOnly
+Set-Cookie: navlns=; expires=Sun, 23-Jul-2023 22:14:57 GMT; domain=.paypal.com; path=/; Secure; HttpOnly
+Set-Cookie: ts=vreXpYrS%3D1721772896%26vteXpYrS%3D1627080296%26vr%3Dd56f912b17a0a6022c6fef71fe16111a%26vt%3Dd56f912b17a0a6022c6fef71fe161119%26vtyp%3Dnew; Path=/; Domain=paypal.com; Expires=Mon, 22 Jul 2024 22:14:57 GMT; HttpOnly; Secure
+Set-Cookie: ts_c=vr%3Dd56f912b17a0a6022c6fef71fe16111a%26vt%3Dd56f912b17a0a6022c6fef71fe161119; Path=/; Domain=paypal.com; Expires=Mon, 22 Jul 2024 22:14:57 GMT; Secure
+X-Frame-Options: SAMEORIGIN
+Accept-Ranges: bytes
+Via: 1.1 varnish, 1.1 varnish
+Date: Fri, 23 Jul 2021 22:14:57 GMT
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Served-By: cache-lhr6629-LHR, cache-mad22064-MAD
+X-Cache: MISS, MISS
+X-Cache-Hits: 0, 0
+X-Timer: S1627078496.477848,VS0,VE906
+Vary: Accept-Encoding
+Set-Cookie: x-cdn=fastly:MAD; Domain=paypal.com; Path=/; Secure
+transfer-encoding: chunked
+
+INVALID
+[2021-07-24 00:14 Europe/Berlin] Invalid IPN: cmd=_notify-validate

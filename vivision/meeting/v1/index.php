@@ -1,0 +1,2 @@
+Este é um site de encontros verdadeiramente gratuito sem custos escondidos e só pessoas reais, que funciona como as pessoas perto do badoo.
+Funcionamos à boa fé das pessoas, porque esta é uma ferramente para ver um futuro com pessoas que não só estejam submissas à corrupção do dinheiro.

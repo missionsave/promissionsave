@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<div id="calculator" class="calculator" style="font-size: 28px; margin: 0 auto; width: 12em;">
+
+  <button id="clear" class="buttonc1 clear" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">C</button>
+
+  <div id="viewer" class="viewer" style="color: #c97874; float: left; line-height: 3em; text-align: right; text-overflow: ellipsis; overflow: hidden; width: 7.5em; height: 3em;">0</div>
+
+  <button class="buttonc1 num" data-num="7" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">7</button>
+  <button class="buttonc1 num" data-num="8" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">8</button>
+  <button class="buttonc1 num" data-num="9" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">9</button>
+  <button data-ops="plus" class="buttonc1 ops" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">+</button>
+
+  <button class="buttonc1 num" data-num="4" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">4</button>
+  <button class="buttonc1 num" data-num="5" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">5</button>
+  <button class="buttonc1 num" data-num="6" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">6</button>
+  <button data-ops="minus" class="buttonc1 ops" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">-</button>
+
+  <button class="buttonc1 num" data-num="1" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">1</button>
+  <button class="buttonc1 num" data-num="2" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">2</button>
+  <button class="buttonc1 num" data-num="3" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">3</button>
+  <button data-ops="times" class="buttonc1 ops" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">*</button>
+
+  <button class="buttonc1 num" data-num="0" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">0</button>
+  <button class="buttonc1 num" data-num="." style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">.</button>
+  <button id="equals" class="buttonc1 equals" data-result="" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">=</button>
+  <button data-ops="divided by" class="buttonc1 ops" style="border: 0; background: rgba(42, 50, 113, 0.28); color: #6cacc5; cursor: pointer; float: left; font: inherit; margin: 0.25em; width: 2em; height: 2em; transition: all 0.5s;">/</button>
+</div>
+
+<button id="reset" class="buttonc1 reset" style="border: 0; cursor: pointer; float: left; font: inherit; margin: 0.25em; transition: all 0.5s; background: rgba(201, 120, 116, 0.28); color: #c97874; font-weight: 400; margin-left: -77px; padding: 0.5em 1em; position: absolute; top: -20em; left: 50%; width: auto; height: auto;">Reset Universe?</button>
+
+
+<script>
+	/*
+TODO:
+    Limit number input
+    Disallow . from being entered multiple times
+    Clean up structure
+*/
+console.log("calc0");
+
+(function() {
+  "use strict";
+console.log("calc");
+  // Shortcut to get elements
+  var el = function(element) {
+    if (element.charAt(0) === "#") { // If passed an ID...
+      return document.querySelector(element); // ... returns single element
+    }
+
+    return document.querySelectorAll(element); // Otherwise, returns a nodelist
+  };
+
+  // Variables
+  var viewer = el("#viewer"), // Calculator screen where result is displayed
+    equals = el("#equals"), // Equal button
+    nums = el(".num"), // List of numbers
+    ops = el(".ops"), // List of operators
+    theNum = "", // Current number
+    oldNum = "", // First number
+    resultNum, // Result
+    operator; // Batman
+
+  // When: Number is clicked. Get the current number selected
+  var setNum = function() {
+    if (resultNum) { // If a result was displayed, reset number
+      theNum = this.getAttribute("data-num");
+      resultNum = "";
+    } else { // Otherwise, add digit to previous number (this is a string!)
+      theNum += this.getAttribute("data-num");
+    }
+	console.log(theNum);
+    viewer.innerHTML = theNum; // Display current number
+
+  };
+
+  // When: Operator is clicked. Pass number to oldNum and save operator
+  var moveNum = function() {
+    oldNum = theNum;
+    theNum = "";
+    operator = this.getAttribute("data-ops");
+
+    equals.setAttribute("data-result", ""); // Reset result in attr
+  };
+
+  // When: Equals is clicked. Calculate result
+  var displayNum = function() {
+
+    // Convert string input to numbers
+    oldNum = parseFloat(oldNum);
+    theNum = parseFloat(theNum);
+
+    // Perform operation
+    switch (operator) {
+      case "plus":
+        resultNum = oldNum + theNum;
+        break;
+
+      case "minus":
+        resultNum = oldNum - theNum;
+        break;
+
+      case "times":
+        resultNum = oldNum * theNum;
+        break;
+
+      case "divided by":
+        resultNum = oldNum / theNum;
+        break;
+
+        // If equal is pressed without an operator, keep number and continue
+      default:
+        resultNum = theNum;
+    }
+
+    // If NaN or Infinity returned
+    if (!isFinite(resultNum)) {
+      if (isNaN(resultNum)) { // If result is not a number; set off by, eg, double-clicking operators
+        resultNum = "You broke it!";
+      } else { // If result is infinity, set off by dividing by zero
+        resultNum = "Look at what you've done";
+        el('#calculator').classList.add("broken"); // Break calculator
+        el('#reset').classList.add("show"); // And show reset button
+      }
+    }
+
+    // Display result, finally!
+    viewer.innerHTML = resultNum;
+    equals.setAttribute("data-result", resultNum);
+
+    // Now reset oldNum & keep result
+    oldNum = 0;
+    theNum = resultNum;
+
+  };
+
+  // When: Clear button is pressed. Clear everything
+  var clearAll = function() {
+    oldNum = "";
+    theNum = "";
+    viewer.innerHTML = "0";
+    equals.setAttribute("data-result", resultNum);
+  };
+
+  /* The click events */
+
+  // Add click event to numbers
+  for (var i = 0, l = nums.length; i < l; i++) {
+    nums[i].onclick = setNum;
+  }
+
+  // Add click event to operators
+  for (var i = 0, l = ops.length; i < l; i++) {
+    ops[i].onclick = moveNum;
+  }
+
+  // Add click event to equal sign
+  equals.onclick = displayNum;
+
+  // Add click event to clear button
+  el("#clear").onclick = clearAll;
+
+  // Add click event to reset button
+  el("#reset").onclick = function() {
+    window.location = window.location;
+  };
+
+}());
+</script>
+</body></html>

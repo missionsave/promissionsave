@@ -1,0 +1,68 @@
+[2021-07-19 05:35 Europe/Berlin] HTTP request of validation request:POST /cgi-bin/webscr HTTP/1.1
+Host: www.sandbox.paypal.com
+Accept: */*
+Connection: Close
+Content-Length: 789
+Content-Type: application/x-www-form-urlencoded
+
+ for IPN payload: cmd=_notify-validate&mc_gross=1.00&protection_eligibility=Eligible&payer_id=EQXL6PEBKF5FW&payment_date=20%3A35%3A35+Jul+18%2C+2021+PDT&payment_status=Completed&charset=windows-1252&first_name=Daniel&mc_fee=0.38&notify_version=3.9&custom=&payer_status=unverified&business=superbem%40gmail.com&quantity=1&verify_sign=A1K9fbA1ef1Izp69094fmCeBIKD0AgVfWd-cs5P.PZ10bc6J1e64VnwL&payer_email=danielchanfana%40gmail.com&txn_id=3A4389557Y3146933&payment_type=instant&last_name=Santos&receiver_email=superbem%40gmail.com&payment_fee=&shipping_discount=0.00&receiver_id=D43YUS35G6K6U&insurance_amount=0.00&txn_type=web_accept&item_name=Camera&discount=0.00&mc_currency=EUR&item_number=CAM%23N1&residence_country=PT&shipping_method=Default&transaction_subject=&payment_gross=&ipn_track_id=381e787c6ea9c
+[2021-07-19 05:35 Europe/Berlin] HTTP response of validation request: HTTP/1.1 400 Bad Request
+Connection: close
+Content-Length: 226
+Content-Type: text/html; charset=iso-8859-1
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Paypal-Debug-Id: bc083f302b9fa
+Set-Cookie: ts=vreXpYrS%3D1721360145%26vteXpYrS%3D1626667545%26vr%3Dbcd57e4017a0a6020606f2bafdeb82ce%26vt%3Dbcd57e4017a0a6020606f2bafdeb82cd%26vtyp%3Dnew; Path=/; Domain=paypal.com; Expires=Thu, 18 Jul 2024 03:35:45 GMT; HttpOnly; Secure
+Set-Cookie: ts_c=vr%3Dbcd57e4017a0a6020606f2bafdeb82ce%26vt%3Dbcd57e4017a0a6020606f2bafdeb82cd; Path=/; Domain=paypal.com; Expires=Thu, 18 Jul 2024 03:35:45 GMT; Secure
+Accept-Ranges: bytes
+Via: 1.1 varnish, 1.1 varnish
+Date: Mon, 19 Jul 2021 03:35:46 GMT
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Served-By: cache-lhr7360-LHR, cache-mad22079-MAD
+X-Cache: MISS, MISS
+X-Cache-Hits: 0, 0
+X-Timer: S1626665746.908091,VS0,VE155
+Set-Cookie: x-cdn=fastly:MAD; Domain=paypal.com; Path=/; Secure
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>400 Bad Request</title>
+</head><body>
+<h1>Bad Request</h1>
+<p>Your browser sent a request that this server could not understand.<br />
+</p>
+</body></html>
+
+[2021-07-19 06:25 Europe/Berlin] HTTP request of validation request:POST /cgi-bin/webscr HTTP/1.1
+Host: www.paypal.com
+Accept: */*
+Connection: Close
+Content-Length: 789
+Content-Type: application/x-www-form-urlencoded
+
+ for IPN payload: cmd=_notify-validate&mc_gross=1.00&protection_eligibility=Eligible&payer_id=EQXL6PEBKF5FW&payment_date=21%3A25%3A50+Jul+18%2C+2021+PDT&payment_status=Completed&charset=windows-1252&first_name=Daniel&mc_fee=0.38&notify_version=3.9&custom=&payer_status=unverified&business=superbem%40gmail.com&quantity=1&verify_sign=AhvDxVJNc374H1QzgJAZgnwS24e.AAqep.5n8dLTnAFLCT8s6rQyhEa0&payer_email=danielchanfana%40gmail.com&txn_id=0UU93484R4992593D&payment_type=instant&last_name=Santos&receiver_email=superbem%40gmail.com&payment_fee=&shipping_discount=0.00&receiver_id=D43YUS35G6K6U&insurance_amount=0.00&txn_type=web_accept&item_name=Camera&discount=0.00&mc_currency=EUR&item_number=CAM%23N1&residence_country=PT&shipping_method=Default&transaction_subject=&payment_gross=&ipn_track_id=9b7e1a3fe6203
+[2021-07-19 06:25 Europe/Berlin] HTTP response of validation request: HTTP/1.1 200 OK
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Content-Type: text/html; charset=UTF-8
+Paypal-Debug-Id: 3c1d7f631c9c7
+X-Frame-Options: SAMEORIGIN
+DC: phx-origin-www-2.paypal.com
+X-Akamai-Transformed: 9 - 0 pmb=mRUM,1
+Date: Mon, 19 Jul 2021 04:25:59 GMT
+Content-Length: 8
+Connection: close
+Set-Cookie: cwrClyrK4LoCV1fydGbAxiNL6iG=uHR7YTmxypjTevCWTwMrLGo6Bld5lthWABawKy_JZI-1jAFoj7FdpptZ0WtvXk5_EpEEXpIVo057ZseThu5sErxxL_SewPqoFSazw3zYfAyeKJHSQfOslzOgumb2GoBtG51Q3w0cQaGKtTzDkAewU8wt0_Mt3c0_5RoYAakSJlq-Txr6R9YeFJGeP8Cs7LSCTNot-cFwYghJII9-B67TnZM4tBnUZ5jfNX2-LFvocf33RxdhcIaWsMlrmrxNr8X7k9S8angH7PiyNYgelfDB1yyovfD_fXedrEkkBIS2rZm40RoFUc8yFQMyF31sf1ApRLTFlDAmnxGY16XwBIiCwUmDBFfqhqv5Wd4VP6uifxvcPKA8JzUSFNkgKeeOWk1RY4u5IoHexSY8YP6sjIJjVQWkgvhir77kTy3HvTcmCMzWPpZnTK6eBXSf8ra; domain=.paypal.com; path=/; Secure; HttpOnly
+Set-Cookie: cookie_check=yes; expires=Thu, 17-Jul-2031 04:25:58 GMT; domain=.paypal.com; path=/; Secure; HttpOnly
+Set-Cookie: navcmd=_notify-validate; domain=.paypal.com; path=/; Secure; HttpOnly
+Set-Cookie: navlns=0.0; expires=Wed, 19-Jul-2023 04:25:58 GMT; domain=.paypal.com; path=/; Secure; HttpOnly
+Set-Cookie: l7_az=dcg02.phx; Path=/; Domain=paypal.com; Expires=Mon, 19 Jul 2021 04:55:59 GMT; HttpOnly; Secure
+Set-Cookie: ts=vreXpYrS%3D1721363158%26vteXpYrS%3D1626670558%26vr%3Dbd03750917a0a1f3e9c2e2a9ff5a7a26%26vt%3Dbd03750917a0a1f3e9c2e2a9ff5a7a25%26vtyp%3Dnew; Path=/; Domain=paypal.com; Expires=Thu, 18 Jul 2024 04:25:59 GMT; HttpOnly; Secure
+Set-Cookie: ts_c=vr%3Dbd03750917a0a1f3e9c2e2a9ff5a7a26%26vt%3Dbd03750917a0a1f3e9c2e2a9ff5a7a25; Path=/; Domain=paypal.com; Expires=Thu, 18 Jul 2024 04:25:59 GMT; Secure
+Set-Cookie: x-cdn=akamai; path=/; domain=.paypal.com; secure
+Server-Timing: edge; dur=3
+Server-Timing: origin; dur=1416
+Server-Timing: cdn-cache; desc=MISS
+Set-Cookie: akavpau_ppsd=1626669359~id=b62782f6e8475e629f10e6462e905eba; Domain=www.paypal.com; Path=/; HttpOnly; Secure; SameSite=None
+Strict-Transport-Security: max-age=63072000
+
+VERIFIED

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="lotowin" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/lotowin" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/lotowin" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-Wl,--as-needed" />
+					<Add option="-lfltk" />
+					<Add option="-lfltk_gl" />
+					<Add option="-lopengl32" />
+					<Add option="-lglu32" />
+					<Add option="-lglew32" />
+					<Add option="-l:libglew32.a" />
+					<Add option="-lcurl" />
+					<Add option="-l:libboost_system-mt.a -l:libboost_chrono-mt.a -l:libboost_serialization-mt.a -l:libboost_iostreams-mt.a -l:libboost_thread-mt.a    -l:libboost_filesystem-mt.a -l:libboost_regex-mt.a" />
+					<Add option="-lBZ2" />
+					<Add option="-ldlibwin" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-w" />
+			<Add option="-Wfatal-errors" />
+			<Add option="-Wall" />
+			<Add option="-Ic:\desk\mpm\lib" />
+			<Add option="-Lc:\desk\mpm\lib" />
+			<Add option="-fpermissive" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,--as-needed" />
+			<Add option="-lfltk" />
+			<Add option="-lfltk_gl" />
+			<Add option="-lopengl32" />
+			<Add option="-lglu32" />
+			<Add option="-lglew32" />
+			<Add option="-l:libglew32.a" />
+			<Add option="-lcurl" />
+			<Add option="-l:libboost_system-mt.a -l:libboost_chrono-mt.a -l:libboost_serialization-mt.a -l:libboost_iostreams-mt.a -l:libboost_thread-mt.a    -l:libboost_filesystem-mt.a -l:libboost_regex-mt.a" />
+			<Add option="-lBZ2" />
+			<Add option="-l:libdlibwin.a" />
+			<Add directory="C:/desk/Mpm/lib/" />
+		</Linker>
+		<Unit filename="../lib/algebra.cpp" />
+		<Unit filename="../lib/algebra.hpp" />
+		<Unit filename="../lib/arrayf.cpp" />
+		<Unit filename="../lib/arrayf.hpp" />
+		<Unit filename="../lib/comb.cpp" />
+		<Unit filename="../lib/comb.hpp" />
+		<Unit filename="../lib/configuru.cpp" />
+		<Unit filename="../lib/configuru.hpp" />
+		<Unit filename="../lib/filesystem.cpp" />
+		<Unit filename="../lib/filesystem.hpp" />
+		<Unit filename="../lib/fl.cpp" />
+		<Unit filename="../lib/fl.hpp" />
+		<Unit filename="../lib/glview.cpp" />
+		<Unit filename="../lib/glview.hpp" />
+		<Unit filename="../lib/math.cpp" />
+		<Unit filename="../lib/math.hpp" />
+		<Unit filename="../lib/ohlcGlWindow.cpp" />
+		<Unit filename="../lib/ohlcGlWindow.hpp" />
+		<Unit filename="../lib/ohlcs.cpp" />
+		<Unit filename="../lib/ohlcs.hpp" />
+		<Unit filename="../lib/regular.cpp" />
+		<Unit filename="../lib/regular.hpp" />
+		<Unit filename="../lib/serialize.cpp" />
+		<Unit filename="../lib/stringf.cpp" />
+		<Unit filename="../lib/stringf.hpp" />
+		<Unit filename="../lib/threads.cpp" />
+		<Unit filename="../lib/threads.hpp" />
+		<Unit filename="../lib/timef.cpp" />
+		<Unit filename="../lib/timef.hpp" />
+		<Unit filename="../lib/win.hpp" />
+		<Unit filename="lotolib.cpp" />
+		<Unit filename="lotolib.hpp" />
+		<Unit filename="lotowin.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<fortran_project />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

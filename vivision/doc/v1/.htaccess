@@ -1,0 +1,1 @@
+RewriteEngine OnRewriteCond %{REQUEST_FILENAME} !-fRewriteCond %{REQUEST_FILENAME} !-d RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?pg=([^\&\ ]+)RewriteRule ^/?index\.php$ /index/%1? [L,R=302]

@@ -1,0 +1,26 @@
+php_value display_errors On
+
+#Header set Access-Control-Allow-Origin "*"
+#Header set Access-Control-Allow-Methods "GET,PUT,POST,DELETE"
+#Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+#Options +FollowSymLinks
+#RewriteEngine On
+#RewriteRule  ^response(.*?)\.php https://www.vivision.org [R]
+
+
+
+#RewriteCond %{HTTP_HOST} ^(meeting.)?vivision\.org$ [NC]
+#RewriteRule !^meeting/ /meeting%{REQUEST_URI}  [L,NC]
+
+#Redirect /about.html /index.php?p=about
+#Redirect http://localhost/vivision/about.html http://localhost/vivision/index.php?p=about
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php?p=%{REQUEST_FILENAME} [QSA,PT,L,NC]
+</IfModule>

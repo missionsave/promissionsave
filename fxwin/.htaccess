@@ -1,0 +1,11 @@
+php_value display_errors On
+php_value mbstring.http_input auto
+php_value date.timezone Europe/Lisbon
+#Header set Access-Control-Allow-Origin "*"
+#Header set Access-Control-Allow-Methods "GET,PUT,POST,DELETE"
+#Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+#Options +FollowSymLinks
+#RewriteEngine On
+#RewriteRule  ^response(.*?)\.php https://www.vivision.org [R]
+#RewriteCond %{HTTP_HOST} ^(meeting.)?vivision\.org$ [NC]
+#RewriteRule !^meeting/ /meeting%{REQUEST_URI}  [L,NC]

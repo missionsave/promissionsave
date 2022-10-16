@@ -1,0 +1,2 @@
+
+redirectMatch 301 ^(.*)$ https://betterplanetmission.com/

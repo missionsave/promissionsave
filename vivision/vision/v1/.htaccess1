@@ -1,0 +1,2 @@
+
+redirectMatch 301 ^(.*)$ /home/vol5_6/epizy.com/epiz_24992072/htdocs/

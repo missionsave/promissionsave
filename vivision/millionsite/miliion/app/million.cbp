@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="million" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="./million" prefix_auto="1" extension_auto="1" />
+				<Option object_output="/home/super/.obj/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-I./ -I/home/super/desk/Mpm/lib" />
+					<Add option="-I/home/super/devtools/.GccLinux64/include" />
+					<Add option="-I/home/super/Mpm/devtools/alglib/src" />
+					<Add option="-I/usr/local/include/ta-lib/" />
+					<Add option="-Wfatal-errors -w -std=c++17" />
+					<Add option="-O3  -pipe" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-Wl,--as-needed" />
+					<Add option="-l:libeasylzma_s.a" />
+					<Add option="-lcurl" />
+					<Add option="-l:libssh2.a" />
+					<Add option="-l:libssl.a" />
+					<Add option="-l:libgcrypt.a" />
+					<Add option="-l:libcrypto.a" />
+					<Add option="-l:libgpg-error.a" />
+					<Add option="-lIlmImf" />
+					<Add option="-l:libboost_system.a -l:libboost_chrono.a -l:libboost_serialization.a -l:libboost_iostreams.a -l:libboost_thread.a    -l:libboost_filesystem.a -l:libboost_regex.a" />
+					<Add option="-lIlmImfUtil" />
+					<Add option="-l:libbz2.a  -l:libz.a -lpthread -ldl" />
+					<Add option="-l:libfltk_gl.a" />
+					<Add option="-l:libfltk_images.a" />
+					<Add option="-ljpeg" />
+					<Add option="-lpng" />
+					<Add option="-l:libfltk.a" />
+					<Add option="-lGLU -l:libGL.so -l:libGLEW.so" />
+					<Add option="-lfreetype" />
+					<Add option="-lX11 -lXi -lXinerama -lXft  -lsupc++ -lfontconfig -lXrender -lXcursor" />
+					<Add option="-lxcb-sync -lxcb -lXau -lXext -lXdmcp -lXfixes" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

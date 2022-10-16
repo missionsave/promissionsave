@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Release" />
+	<File name="..\lib\ohlcGlWindow.hpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1816" topLine="26" />
+		</Cursor>
+	</File>
+	<File name="..\lib\comb.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="17350" topLine="541" />
+		</Cursor>
+	</File>
+	<File name="..\lib\timef.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4591" topLine="131" />
+		</Cursor>
+	</File>
+	<File name="..\lib\math.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3348" topLine="60" />
+		</Cursor>
+	</File>
+	<File name="lotolib.cpp" open="1" top="0" tabpos="2" split="2" active="1" splitpos="809" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="744" topLine="51" />
+			<Cursor2 position="6099" topLine="254" />
+		</Cursor>
+		<Folding>
+			<Collapse line="43" />
+		</Folding>
+	</File>
+	<File name="..\lib\stringf.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="36915" topLine="699" />
+		</Cursor>
+	</File>
+	<File name="..\lib\fl.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="501" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="..\lib\glview.hpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1076" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\lib\filesystem.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1588" topLine="40" />
+		</Cursor>
+	</File>
+	<File name="..\lib\ohlcGlWindow.cpp" open="0" top="0" tabpos="9" split="2" active="1" splitpos="809" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7490" topLine="160" />
+			<Cursor2 position="271" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="72" />
+			<Collapse line="79" />
+			<Collapse line="113" />
+			<Collapse line="155" />
+			<Collapse line="180" />
+			<Collapse line="194" />
+		</Folding>
+	</File>
+	<File name="lotowin.cpp" open="1" top="1" tabpos="1" split="2" active="1" splitpos="809" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="13149" topLine="588" />
+			<Cursor2 position="4693" topLine="213" />
+		</Cursor>
+		<Folding>
+			<Collapse line="52" />
+			<Collapse line="128" />
+			<Collapse line="284" />
+			<Collapse line="425" />
+		</Folding>
+	</File>
+	<File name="..\lib\math.hpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="93" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>
