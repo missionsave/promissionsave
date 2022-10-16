@@ -6,7 +6,8 @@
 // $dbname = "GBtyfP4tfL";
 $servername = "sql108.epizy.com";
 $username = "epiz_29317381";
-$password = "sHmRRhzFyc";
+$passwords = file('connect.pwd');
+$password = $passwords[0];
 $dbname = "epiz_29317381_a";
 try {
     $db = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
