@@ -2,6 +2,6 @@
 git config --global core.excludesfile /desk/promissionsave/.gitignore
 git add . 
 git commit -a -m "update"
-git push origin master
+git push original master
 
 pause
