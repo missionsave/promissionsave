@@ -36,6 +36,7 @@ ifeq ($(uname_S), Windows)
 	# LDFLAGS+=  -l:libssh.dll.a
 	# LDFLAGS+=  -lssh2 -l:libz.a
 	LDFLAGS+=  -lssh2 
+	LDFLAGS+=  -lXInput 
 	# LDFLAGS+=    -l:libssh2.a -l:libz.a
 	# LDFLAGS+= -lflscintillaw64 -lglew32 -l:libglew32.a -lcurl -lBZ2 
 	LDFLAGS+= -l:libfltk_gl.a -l:libfltk.a -liconv   -l:libglew32.a -lopengl32 -lgdi32 -lglu32 -lWs2_32

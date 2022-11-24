@@ -2,6 +2,16 @@
 	
 // https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-8GA30407VK1630742
 
+$webview=0;
+//For iOS
+if ((strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false)) {
+	$webview=1;
+} 
+//For Android
+// echo $_SERVER['HTTP_X_REQUESTED_WITH'];
+if ($_SERVER['HTTP_X_REQUESTED_WITH'] != "") {
+	$webview=1;
+} 
 
 ?>
 
@@ -18,28 +28,7 @@ echo $hash;
 	return;
 	*/
 ?>
-<?php  
-	/*xhttp.php cópia para meeting.vivision.org de vivision.org*/
-	// $location="./";
-	$location="../../htdocs/"; 
-	$site="https://".$_SERVER['SERVER_NAME'];
-	$just_domain = "https://".preg_replace("/^(.*\.)?([^.]*\..*)$/", "$2", $_SERVER['HTTP_HOST']);
-	$composer =$location.'vendor/autoload.php';	
-	$id=0;
-	$name="nome";
-	$email="email";
-	// $lat=39.3273571;
-	$long=-8.937850;
-	$lang=0;
-	$balance=10;
-	require_once("connect.php");	
-	require_once( "token.php");	
-	require_once( "dict.php");	
-	require_once($location."vendor/autoload.php");	
-	require_once($location."google_login.php");	
-	require_once($location."facebook_login.php");
-	require_once("parser.php");
-?>
+
 <?php //Global vars
 /* 	// $site="vivision.org";
 	// $site="www.".$site;
@@ -144,7 +133,9 @@ function reverse_geo($lat,$long){
 ?>
 
 <!DOCTYPE html>
-<html  >
+<html  lang="<?php echo $langbr;?>" >
+	<!--<meta name="google" value="notranslate">-->
+<?php if($langbr!="en")echo '<meta name="google" value="notranslate">'; ?>
 <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0" />
 <meta http-equiv="cache-control" content="max-age=0" />
 <meta http-equiv="expires" content="0" />
@@ -160,7 +151,66 @@ function reverse_geo($lat,$long){
 <meta property="og:image"              content="https://promissionsave.com/images/plantel-de-fresones-albion-520x520.jpeg" />
 
 
-<title>Promissionsave beta</title>
+<title>Promissionsave alpha</title>
+<style>
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid blue;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+</style>	
+<div id="div_loader" class="loader" style="display:none; position:fixed; margin:auto; top: 30%;  z-index:100;">
+</div>
+<script>
+	div_loader.style.left=window.innerWidth/2-24+"px";
+	div_loader.style.display="block";
+</script>
+
+<?php  
+	/*xhttp.php cópia para meeting.vivision.org de vivision.org*/
+	// $location="./";
+	$location="../../htdocs/"; 
+	$site="https://".$_SERVER['SERVER_NAME'];
+	$just_domain = "https://".preg_replace("/^(.*\.)?([^.]*\..*)$/", "$2", $_SERVER['HTTP_HOST']);
+	$composer =$location.'vendor/autoload.php';	
+	$id=0;
+	$name="nome";
+	$email="email";
+	// $lat=39.3273571;
+	$long=-8.937850;
+	$lang=0;
+	$idioms=array("en","pt","es","fr","it");
+	$langbr="en";
+	if(@$_SERVER['HTTP_ACCEPT_LANGUAGE'])$langbr = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	if( @$_COOKIE['lang'] )$langbr=$_COOKIE['lang'];
+	// $langbr="ar";
+	// $langbr="en";
+	$balance=10;
+	require_once("connect.php");	
+	require_once( "token.php");	
+	require_once( "dict.php");	
+	require_once($location."vendor/autoload.php");	
+	require_once($location."google_login.php");	
+	require_once($location."facebook_login.php");
+	require_once("parser.php");
+?>
+
+
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
@@ -176,6 +226,7 @@ function reverse_geo($lat,$long){
 
 
 <head>
+
 <style>
 .ml2 {
   font-weight: 900;
@@ -294,10 +345,11 @@ input[type=number] {
 <style>  /*buttonpaypal*/
 	
 .buttonpp { //background-image: linear-gradient(#A9A932, #E5D153, #E9CC0E);
- width: 170px; //change width of button here
+ //width: 170px; //change width of button here
   height: 32px;
  color: #2e3192;
  text-decoration: none;
+ cursor: pointer;
  display: block;
  text-align: center;
  position: relative;
@@ -375,6 +427,7 @@ color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
   transform: rotate(45deg) translate(-8px, -8px);
 }
 </style>
+
 <script>
 
 	
@@ -517,17 +570,27 @@ window.onresize = function(){adjust();};
 		  <div class="bar3"></div>
 		</div>
 		<div style=" margin-right: auto;  margin-left: auto;   max-width:250px;  ">
-			<div style="  padding-left:0px;  word-wrap: break-word;  ">Vivision - <?php echo d('Fighting hunger') ?><br> </div>
-			
+			<div style="  padding-left:0px;  word-wrap: break-word;  ">Vision - <?php echo d('Fighting hunger') ?><br> </div>
+
 			<button id="button_makp" class="btn btn-primary" style="max-width:110px; float:left; margin-top:10px; font-size: 10px; color:#000; background-image: linear-gradient(0deg, rgba(34,195,160,1) 0%, rgba(113,136,42,1) 23%, rgba(133,199,144,1) 42%, rgba(240,204,126,1) 100%);  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;" onclick="button_makpf();"><?php echo d('near you')?></button>
 			
 			
 			
 		</div>
-		<button id="buttonEntrar" class="button" style="float:right; margin-top:-12px; " onclick="btentrar();"><?php echo d('enter')?></button>
-		<button id="buttonCarregar" class="buttonpp" style="max-width:110px; float:right; margin-top:0px;  display:none; color:#000; " onclick="btcarregarf();"><?php echo d('charge')?></button>
+
+		<script> 
+		function webview(){ 
+			if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)  && <?php echo $webview;?>) {
+				window.location="intent:googlechrome://navigate?url=promissionsave.com?i=1#Intent;end";	
+			}  
+		}
+		</script>
+		<button id="buttonEntrar" class="buttonpp notranslate" style="float:right;  " onclick='webview(); btentrar();'><?php echo d('login')?></button>
+		
+		<button id="buttonCarregar" class="buttonpp" style="max-width:110px; float:right; margin-top:0px;  display:none; color:#000; " onclick='webview(); btcarregarf();'><?php echo d('buy')?></button>
+		
 		<div id="div_balance" style="border-left:solid; border-right:solid; border-top:solid; float:right; margin-right:10px; padding: 5px 10px; "><?php echo d("Balance").":<br>".$balance."EUR"; ?>
-			</div>
+		</div>
 	</div>
 	
 	
@@ -539,23 +602,44 @@ window.onresize = function(){adjust();};
 	font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white; 
 }
 </style>
+
 	<div id="div_menu" style="max-width: 690px;  position: fixed;  margin:   auto; left: -380px;   top:0px;   width: 350px; height:350px; top:52px;  z-index:2; color:#000;  -moz-opacity:.80; filter:alpha(opacity=80); background-color: #fff;  box-shadow: 10px 10px grey; display:flex; ">
 		<div style="display:flex; flex-direction: column ;">
 		<br>
-		<a   class="button btn_menu" style="font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="div_don_fundsf();">
+			<div class='notranslate' style="display:flex; flex-direction: row ;">
+				<?php 
+					
+					$a='<a   class="buttonpp" style="padding:0px 10px; margin:auto; font-size:14px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="div_langf(&quot;langbr&quot; )">langbr</a>';
+					$b="";
+					for ($i = 0; $i < count($idioms); $i++) { 
+						if($idioms[$i]==$langbr)continue;
+						$b.=str_replace("langbr",$idioms[$i],$a); 
+					}
+					echo $b;
+				
+				?>
+			</div>
+		<br>
+		<a   class="buttonpp" style="padding:0px 10px; margin:auto; font-size:14px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="div_don_fundsf();">
 				Donate funds to poor people
 			</a>
 		<br>	
-		<a href="" class="button btn_menu" style="font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;" id="btn_donate_funds" onClick="">
+		<a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:13px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;" id="btn_donate_funds" onClick="">
 				Transfer funds between our accounts - Planned
 		</a>
-		<a href="biography.html" class="button btn_menu" style="font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="">
+		<br>	
+		
+		<!--<a href="biography.html" class="buttonpp" style="margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="">
 				Biography - Planed
 		</a>
-		<a href="" class="button btn_menu" style="font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="document.cookie = 'vivision' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'; location.reload();">
+		<br>-->	
+		
+		<a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="document.cookie = 'vivision' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'; location.reload();">
 				Logout
 		</a>
-		<a   class="button btn_menu" style="font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="btn_qrf(); ">
+		<br>	
+		
+		<a   class="buttonpp" style="padding:0px 10px; margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="btn_qrf(); ">
 				Share the site
 		</a>
 		</div>
@@ -579,9 +663,12 @@ if(@$_GET['action']=="paypal_confirm"){
  
 ?>
 
+
+<div id="div_body" style="display:none; max-width: 1000px; width:100%; height:100%; position:absolute; top:52px;   flex-direction: row;  ">
+
 <div id="divCarregar" class="w3-card-4" style="margin:   auto; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px; top:50px;  width: 100%; overflow-x:hidden; height:0px; border:none;  ">
 	<div class="w3-container w3-brown" style="text-align:center; ">
-		<h3>Insira o montante a carregar:</h3>
+		<h3>Enter the amount to charge:</h3>
 	</div>
 		<!-https://www.paypal.com/lv/smarthelp/article/how-do-i-add-paypal-checkout-to-my-custom-shopping-cart-ts1200 ->
 	<form autocomplete="off" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -617,19 +704,44 @@ if(@$_GET['action']=="paypal_confirm"){
 
 </div>
 
+
+<script>
+	function btentrar(){ 
+	
+	// https://myaccount.google.com/u/2/permissions?continue=https%3A%2F%2Fmyaccount.google.com%2Fu%2F2%2Fsecurity
+	google.accounts.id.initialize({
+      client_id: '<?php echo $clientID; ?>',
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt(); 
+	
+	intervalmovdiv = setInterval(my_timer_login_descend, 100);
+	div_login.style.height=230+"px";
+	div_login1.style.left= 0+"px";
+	div_login2.style.left="1200px";
+	div_login3.style.left="2400px";
+	document.documentElement.scrollTop=0;
+}
+</script>
+
 <div id="div_login" class="w3-card-4" style="margin:   auto; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px; top:50px;  width: 100%; overflow-x:hidden; height:0px; border:none;  ">
 	 
 	 <div id="div_login1" style="margin:   auto; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px;   width: 100%; overflow-x:hidden;   border:none;  ">
 	  
-		<a id="btn_login_facebook" style="  display: flex; justify-content: center;  margin: auto; margin-top:20px; left: 0; right: 0; max-width: 200px; "   class="btn btn-primary" href="<?php echo $site."?action=fblogin"; ?>" >Enter with Facebook</a>
-		
-		<a id="btn_login_google" class="btn btn-primary" style=" display: flex; justify-content: center;  margin: auto;  margin-top:20px; left: 0; right: 0; max-width: 200px; background-color: #8064A2 !important" href="<?php echo $client->createAuthUrl(); ?>" >Enter with Google</a>
+		<a id="btn_login_facebook" style="  display: flex; justify-content: center;  margin: auto; margin-top:20px; left: 0; right: 0; max-width: 200px; " onclick='div_loader.style.display="block";'  class="btn btn-primary" href="<?php echo $site."?action=fblogin"; ?>" >Enter with Facebook</a>
+
 		
 		<div style="   justify-content: center;  margin: auto;  margin-top:20px; left: 0; right: 0; max-width: 200px;">
-		<div class="decorated"><span>ou</span></div> 
+			<div class="decorated"><span>or</span></div> 
 		</div>
+
+
+		<a id="btn_login_google" class="btn btn-primary" style=" display: flex; justify-content: center;  margin: auto;  margin-top:20px; left: 0; right: 0; max-width: 200px; background-color: #8064A2 !important"  onclick='div_loader.style.display="block";'  href="<?php echo $client->createAuthUrl(); ?>" >Enter with Google</a>
+
 		
-		<a id="btn-fblogin" class="btn btn-primary" style=" display: flex; justify-content: center;  margin: auto;  margin-top:20px; left: 0; right: 0; max-width: 200px; background-color: #00cc00 !important" onclick="move_div_login();" >Enter with email</a>
+		
+		
+		<!--<a id="btn-fblogin" class="btn btn-primary" style=" display: flex; justify-content: center;  margin: auto;  margin-top:20px; left: 0; right: 0; max-width: 200px; background-color: #00cc00 !important" onclick="move_div_login();" >Enter with email</a>-->
 	</div>
 	
 	
@@ -674,6 +786,9 @@ if(@$_GET['action']=="paypal_confirm"){
 	
 	
 </div>
+
+</div>
+
 <script>
 	 // var geoFindMe1;
 </script>
@@ -683,18 +798,39 @@ if(@$_GET['action']=="paypal_confirm"){
 <div id="divNews" onscroll="divNewsscrollf()" style="line-height: 1.6;">
 <!--img style="float:right; width:100px; height:auto;"src="sweet_potatoes_oven_baked-1125x1500.webp"></img>-->
 <img style="float:right; width:100px; height:auto;"src="images/plantel-de-fresones-albion-520x520.jpeg?"></img>
+
+
+  <script type="text/javascript" src="https://www.gstatic.com/_/translate_http/_/js/k=translate_http.tr.en_GB.jUY4_WDT6tY.O/d=1/exm=ajaxproxy,el_conf/ed=1/rs=AN8SPfo-BMNf26XhheE95_VcZtMnJF0ToQ/m=navigationui" data-environment="prod" data-proxy-url="https://promissionsave-com.translate.goog" data-proxy-full-url="https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=pt-PT&amp;_x_tr_pto=wapp" data-source-url="https://promissionsave.com/index1.html" data-source-language="en" data-target-language="<?php echo $langbr;?>" data-display-language="pt-PT" data-detected-source-language="" data-is-source-untranslated="false" data-source-untranslated-url="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=pt-PT&amp;client=webapp&amp;u=https://promissionsave.com/index1.html&amp;anno=2" data-use-in-place-translation="true" data-client="tr"></script>
+  <script>function gtElInit() {var lib = new google.translate.TranslateService();lib.translatePage('', '<?php echo $langbr;?>', function () {});}</script>
+  <?php if($langbr!="en") 
+  echo '<script src="https://translate.google.com/translate_a/element.js?cb=gtElInit&amp;hl=pt-PT&amp;client=wt" type="text/javascript"></script>'; ?>
+<style>
+#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+.goog-text-highlight { background: none !important; box-shadow: none !important;}
+</style>
+
+
+
 <?php 
 
-echo parcegoogledoc("Vivisionhome.html",array(
-'"><img alt="" src="images/image1.png"' => ' float:left;"><img alt="" src="images/image1.png"',
-'AZ' => "Arizona1"));
+// $ff=file_get_contents("https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-PT&_x_tr_pto=wapp");
+// echo $ff;
+// file_put_contents("ff.txt",$ff);
+// echo parcegoogledoc("Vivisionhome.html",array(
+// echo parsegooglehttp("https://docs.google.com/document/d/e/2PACX-1vThTN29m3TTNojOyGrgPVYfV9Gdx56KklDlD_t-l8MlU31oGsv8vMZkbstOkURjGT4FNTFSXIiW2UPH/pub",array(
+// echo parsegooglehttp("https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=pt&_x_tr_tl=en&_x_tr_hl=pt-PT&_x_tr_pto=wapp",array(
+
+echo parsegooglehttp("https://docs-google-com.translate.goog/document/d/e/2PACX-1vThTN29m3TTNojOyGrgPVYfV9Gdx56KklDlD_t-l8MlU31oGsv8vMZkbstOkURjGT4FNTFSXIiW2UPH/pub?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-PT&_x_tr_pto=wapp",array(
+'"><img alt="" src="images/image1.png"' => ' float:left;"><img alt="" src="images/image1.png"', 
+),"",1);
 ?>
 </div>
-<iframe title='People who died from hunger' src='https://www.theworldcounts.com/embed/challenges/2?background_color=white&color=black&font_family=%22Helvetica+Neue%22%2C+Arial%2C+sans-serif&font_size=14' style='border: none' height='100' width='300'></iframe>
+<!--<iframe title='People who died from hunger' src='https://www.theworldcounts.com/embed/challenges/2?background_color=white&color=black&font_family=%22Helvetica+Neue%22%2C+Arial%2C+sans-serif&font_size=14' style='border: none' height='100' width='300'></iframe>-->
 <style>
 p{line-height: 1.1;}
 </style>
 
+<style>#google_translate_element,.skiptranslate{display:none;}body{top:0!important;}</style>
 
 <div id="div_maknear" style="  margin: auto; max-height:200px; overflow:hidden;">  
 	<div id="button_near" class="center_flex" style="  padding-left: 20px; padding-right: 20px; ">
@@ -724,8 +860,15 @@ p{line-height: 1.1;}
 }
 </style>
 <?php 
-echo parcegoogledoc("wfp/WFP.html",array(
-'"><img alt="" src="images/image3.png"' => ' float:left;"><img alt="" src="$addpathimages/image3.png"',
+// echo parcegoogledoc("wfp/WFP.html",array(
+// echo parsegooglehttp("index1.html",array(
+echo parsegooglehttp("https://docs.google.com/document/d/e/2PACX-1vSAox75sL1yTcN4gbYaycpQmS5McJ63H0wgvMc-c5I8qo_HSk15tUJrkLwM2FaLG3Yq6Wa4vHWKqDxz/pub",array(
+'width: 657.50px; height: 374.62px;' => ' width: 100% !important; height: auto !important;',
+'width: 660.50px; height: 469.59px;' => ' width: 100% !important; height: auto !important;',
+'"><img alt="img1"' => ' width: 100% !important; height: auto !important;"><img alt="img1"',
+'"><img alt="img2"' => ' width: 100% !important; height: auto !important;"><img alt="img2"',
+'"><img alt="estrutura"' => ' float:left;"><img alt="estrutura"',
+'"><img alt="" src="images/image3.png"' => ' float:left;!important;"><img alt="" src="$addpathimages/image3.png"',
 '"><img alt="" src="images/image2.png" style="' => ' width: 100% !important; height: auto !important;"><img alt="" src="$addpathimages/image2.png" style="width: 100% !important; height: auto !important; ',
 '"><img alt="" src="images/image1.png" style="' => ' width: 100% !important; height: auto !important;"><img alt="" src="$addpathimages/image1.png" style="width: 100% !important; height: auto !important; ',
 '&lt;t video1&gt;' => '<div class="video-container"><iframe style="width:100%; "    src="https://www.youtube.com/embed/_EygIwvFI0Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
@@ -813,22 +956,7 @@ function myTimer() {
 function paypal_confirm(){
 	console.log("da");
 }
-function btentrar(){ 
-	
-	// https://myaccount.google.com/u/2/permissions?continue=https%3A%2F%2Fmyaccount.google.com%2Fu%2F2%2Fsecurity
-	google.accounts.id.initialize({
-      client_id: '<?php echo $clientID; ?>',
-      callback: handleCredentialResponse
-    });
-    google.accounts.id.prompt(); 
-	
-	intervalmovdiv = setInterval(my_timer_login_descend, 10);
-	div_login.style.height=230+"px";
-	div_login1.style.left= 0+"px";
-	div_login2.style.left="1200px";
-	div_login3.style.left="2400px";
-	document.documentElement.scrollTop=0;
-}
+
 function my_timer_login_descend() {
 	// console.log(divNews.style.top);
 	var divtop=parseInt(divNews.style.top, 10);
@@ -838,8 +966,8 @@ function my_timer_login_descend() {
 		console.log(divNews.clientHeight);
 		return;
 	}
-	divNews.style.top=  divtop+10+"px";
-	div_maknear.style.top=  divmakn+10+"px";
+	divNews.style.top=  divtop+30+"px";
+	div_maknear.style.top=  divmakn+20+"px";
 	// divNews.style.left=  divtop+10+"px";
 }
 function handleCredentialResponse(response){
@@ -961,7 +1089,7 @@ window.onscroll =divNewsscrollf;
    // console.log(document.documentElement.scrollTop || document.body.scrollTop);
  // };
 window.onload=function(){
-
+	div_loader.style.display="none";
 }
 </script>
   
@@ -1113,16 +1241,19 @@ function soblabel(){
 	},1800);
 } 
 </script>
+
 <script> //geo
 
 // geoFindMe1=function() {
 function geoFindMe1() {
 //acesso à localizaçao em definiçoes 
 // var geolocation = Components.classes["@mozilla.org/geolocation;1"]
-                            // .getService(Components.interfaces.nsIDOMGeoGeolocation);
+                           // .getService(Components.interfaces.nsIDOMGeoGeolocation);
+	 div_loader.style.display="block";
 	 if (!navigator.geolocation){
 	   // output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
 	   get_mak(38.7302156,-9.2803685);
+	   div_loader.style.display="none";
 	   return;
 	 }
 
@@ -1134,11 +1265,13 @@ function geoFindMe1() {
 		button_near.style.display="none";
 		
 		// setTimeout(	() =>{
+			
 			get_mak(latitude,longitude);
 			// get_mak(38.677511,-75.335495);
 			// get_mak(30.659218,-87.746067);
 			span_maknear.style.display="block";
-			soblabel();
+			div_loader.style.display="none";
+			// soblabel();
 		// },3500);
 		// get_mak(38.7302156,-9.2803685);
 	   // var img = new Image();
@@ -1151,6 +1284,7 @@ function geoFindMe1() {
 		console.warn('ERROR(' + err.code + '): ' + err.message);
 		Swal.fire({title:"Please allow geolocation on your browser and try again ",icon:'none',  showConfirmButton: false}); 
 		setTimeout(() =>{Swal.close();},2400);
+		div_loader.style.display="none";
 		// output.innerHTML ='ERROR(' + err.code + '): ' + err.message;
 	   // output.innerHTML = "Unable to retrieve your location";
 	   // get_mak(38.7302156,-9.2803685);
@@ -1162,11 +1296,20 @@ function geoFindMe1() {
 } 
 // geoFindMe();
 
+ navigator.permissions.query({ name: 'geolocation' })
+.then(geoFindMe1());
+
 console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
  
 </script>
 
-
+<script>
+	function div_langf(langbr ){
+		div_loader.style.display="block";
+		setCookie("lang",langbr,365 ); 
+		location.reload();
+	};
+</script>
 
 
 </body>
@@ -1174,9 +1317,10 @@ console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 <script>
 <?php
 	$s=@$_GET["s"]; 
-	if($s=="donate")echo 'window.onload=function(){div_don_fundsf(0)}';
+	if($s=="donate")echo 'window.onload=function(){div_don_fundsf(0); div_loader.style.display="none";}';
 
 ?>
+// div_loader.style.display="none";
 </script>
 
 

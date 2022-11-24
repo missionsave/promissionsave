@@ -1,0 +1,14 @@
+<html lang="en">
+ <head>
+  <base href="https://promissionsave.com/index1.html">
+  <meta http-equiv="X-Translated-By" content="Google">
+  <meta http-equiv="X-Translated-To" content="pt">
+  <script type="text/javascript" src="https://www.gstatic.com/_/translate_http/_/js/k=translate_http.tr.en_GB.jUY4_WDT6tY.O/d=1/rs=AN8SPfo-BMNf26XhheE95_VcZtMnJF0ToQ/m=ajaxproxy" data-sourceurl="https://promissionsave.com/index1.html"></script>
+  <meta name="robots" content="none">
+ </head>
+ <body>
+  <script type="text/javascript" src="https://www.gstatic.com/_/translate_http/_/js/k=translate_http.tr.en_GB.jUY4_WDT6tY.O/d=1/exm=ajaxproxy,el_conf/ed=1/rs=AN8SPfo-BMNf26XhheE95_VcZtMnJF0ToQ/m=navigationui" data-environment="prod" data-proxy-url="https://promissionsave-com.translate.goog" data-proxy-full-url="https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=en&amp;_x_tr_tl=pt&amp;_x_tr_hl=pt-PT&amp;_x_tr_pto=wapp" data-source-url="https://promissionsave.com/index1.html" data-source-language="en" data-target-language="pt" data-display-language="pt-PT" data-detected-source-language="" data-is-source-untranslated="false" data-source-untranslated-url="https://translate.google.com/website?sl=en&amp;tl=pt&amp;hl=pt-PT&amp;client=webapp&amp;u=https://promissionsave.com/index1.html&amp;anno=2" data-use-in-place-translation="true" data-client="tr"></script>hi
+  <script>function gtElInit() {var lib = new google.translate.TranslateService();lib.translatePage('en', 'pt', function () {});}</script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=gtElInit&amp;hl=pt-PT&amp;client=wt" type="text/javascript"></script>
+ </body>
+</html>
