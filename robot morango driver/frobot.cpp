@@ -1184,7 +1184,7 @@ void goffset(vec3* offset){
 	copy_points_k();
 }
 
-void movz_ik(float z){
+ void movz_ik(float z){
 	if(abs(z)<3)return; //evitate tremelics
 	osg::Matrix Trf;
 	Trf.makeTranslate( 0,0,z );	
