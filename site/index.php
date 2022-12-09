@@ -154,7 +154,7 @@ function reverse_geo($lat,$long){
 <meta property="og:image"              content="https://promissionsave.com/images/plantel-de-fresones-albion-520x520.jpeg" />
 
 
-<title>Promissionsave alpha</title>
+<title class='notranslate'>Promissionsave alpha</title>
 <style>
 .loader {
     width: 48px;
@@ -198,11 +198,13 @@ function reverse_geo($lat,$long){
 	$lang=0;
 	$idioms=array("en","pt","es","fr","it");
 	$langbr="en";
+	$coin="USD";
 	if(@$_SERVER['HTTP_ACCEPT_LANGUAGE'])$langbr = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 	if( @$_COOKIE['lang'] )$langbr=$_COOKIE['lang'];
 	// $langbr="ar";
 	// $langbr="en";
-	$balance=10;
+	if($langbr!="en")$coin="EUR";
+	$balance=0;
 	require_once("connect.php");	
 	require_once( "token.php");	
 	require_once( "dict.php");	
@@ -593,7 +595,7 @@ window.onresize = function(){adjust();};
 		
 		<button id="buttonCarregar" class="buttonpp" style="max-width:110px; float:right; margin-top:0px;  display:none; color:#000; " onclick='webview(); btcarregarf();'><?php echo d('buy')?></button>
 		
-		<div id="div_balance" style="border-left:solid; border-right:solid; border-top:solid; float:right; margin-right:10px; padding: 5px 10px; "><?php echo d("Balance").":<br>".$balance."EUR"; ?>
+		<div id="div_balance" style="border-left:solid; border-right:solid; border-top:solid; float:right; margin-right:10px; padding: 5px 10px; "><?php echo d("Balance").":<br>".$balance.$coin; ?>
 		</div>
 	</div>
 	
@@ -671,7 +673,7 @@ if(@$_GET['action']=="paypal_confirm"){
 
 <div id="divCarregar" class="w3-card-4" style="margin:   auto; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px; top:50px;  width: 100%; overflow-x:hidden; height:0px; border:none;  ">
 	<div class="w3-container w3-brown" style="text-align:center; ">
-		<h3>Enter the amount to charge:</h3>
+		<h4>Enter the amount to charge:</h4>
 	</div>
 		<!-https://www.paypal.com/lv/smarthelp/article/how-do-i-add-paypal-checkout-to-my-custom-shopping-cart-ts1200 ->
 	<form autocomplete="off" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -680,18 +682,18 @@ if(@$_GET['action']=="paypal_confirm"){
 		<input type='hidden' name='item_name' value='Deposito para <?php echo $name;?>'>
 		<input type='hidden' name='item_number' value='1'> 
 		<input type='hidden' name='no_shipping' value='1'> 
-		<input type='hidden' name='currency_code' value='EUR'>
+		<input type='hidden' name='currency_code' value='<?php echo $coin;?>'>
 		<input type='hidden' name='notify_url' value='<?php echo $site; ?>/notify.php'>
 		<input type='hidden' name='cancel_return' value='<?php echo $site; ?>/cancel.php'>
 		<input type='hidden' name='return' value='<?php echo $site; ?>/?action=paypal_confirm'>
 		<input type="hidden" name="cmd" value="_xclick">  
-		<label class="w3-text-brown"><b>Valor do depósito:</b></label>
+		<label class="w3-text-brown"><b>deposit amount:</b></label>
 		<div style="display: flex; justify-content: center;  margin: auto; left: 0; right: 0; max-width: 600px; ">      
 			<input id="inputPay"  autocomplete="false" style="float:right; text-align: right; width:100px;" name="amount" onfocus="input_pay_f(); " step="1" value="10" min="10" type="tel" onkeyup="input_pay_f();"> 
-			<label class="w3-text-brown" style="float:right; margin-top:3px;margin-left:10px; "><b>EUR</b></label>
+			<label class="w3-text-brown" style="float:right; margin-top:3px;margin-left:10px; "><b><?php echo $coin;?></b></label>
 		</div>
 		<div style="display: flex; justify-content: center; top:140px; width: 50%; margin: auto; left: 0; right: 0; max-width: 1000px; position: absolute;"> 
-			<input style="width: 80px; " type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but03.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+			<input style="width: 80px; margin-top:-20px;" type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but03.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 		</div>
 	</form>	
 		<div id="div_pay_label" style="margin-top:80px; line-height: 1.0;" >
@@ -703,43 +705,10 @@ if(@$_GET['action']=="paypal_confirm"){
 
 	Donate Funds to poor people, we already are donating 30% of all our production, but with you we can donate more.<br>
 	We give a hand full of 3 strawberries to each children in need everyday.
-	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_donations"><input type="hidden" name="business" value="danielchanfana@gmail.com"><input type="hidden" name="lc" value="PT"><input type="hidden" name="item_name" value="Mission Save"><input type="hidden" name="no_note" value="0"><input type="hidden" name="currency_code" value="EUR"><input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest"><input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!"><img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1"></form>
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_donations"><input type="hidden" name="business" value="danielchanfana@gmail.com"><input type="hidden" name="lc" value="PT"><input type="hidden" name="item_name" value="Mission Save"><input type="hidden" name="no_note" value="0"><input type="hidden" name="currency_code" value="<?php echo $coin;?>"><input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest"><input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!"><img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1"></form>
 
 </div>
 
-
-<script>
-	function btentrar(){ 
-	
-	// https://myaccount.google.com/u/2/permissions?continue=https%3A%2F%2Fmyaccount.google.com%2Fu%2F2%2Fsecurity
-	google.accounts.id.initialize({
-      client_id: '<?php echo $clientID; ?>',
-      callback: handleCredentialResponse
-    });
-    google.accounts.id.prompt(); 
-	divNews.style.top=  280+30+"px";
-	
-	// intervalmovdiv = setInterval(my_timer_login_descend, 100);
-	div_login.style.height=230+"px";
-	div_login1.style.left= 0+"px";
-	div_login2.style.left="1200px";
-	div_login3.style.left="2400px";
-	document.documentElement.scrollTop=0;
-}
-function my_timer_login_descend() {
-	// console.log(divNews.style.top);
-	var divtop=parseInt(divNews.style.top, 10);
-	var divmakn=parseInt(div_maknear.style.top, 10);
-	if(divtop>=280){
-		clearInterval(intervalmovdiv);
-		console.log(divNews.clientHeight);
-		return;
-	}
-	divNews.style.top=  divtop+30+"px";
-	div_maknear.style.top=  divmakn+20+"px";
-	// divNews.style.left=  divtop+10+"px";
-}
-</script>
 
 <div id="div_login" class="w3-card-4" style="margin:   auto; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px; top:50px;  width: 100%; overflow-x:hidden; height:0px; border:none;  ">
 	 
@@ -806,6 +775,51 @@ function my_timer_login_descend() {
 	
 	
 </div>
+
+
+<script>
+var div_slider_down=[divCarregar,div_don_funds,div_login];
+function div_swapf(ldiv){
+	div_container.style.top=  280+30+"px";
+	for(var i=0;i<div_slider_down.length;i++){
+		div_slider_down[i].style.height=0+"px";
+		if(div_slider_down[i]==ldiv)
+		ldiv.style.height=220+"px";
+	}
+}
+
+function btentrar(){ 
+	
+	// https://myaccount.google.com/u/2/permissions?continue=https%3A%2F%2Fmyaccount.google.com%2Fu%2F2%2Fsecurity
+	google.accounts.id.initialize({
+      client_id: '<?php echo $clientID; ?>',
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt(); 
+	// divNews.style.top=  280+30+"px";
+	div_swapf(div_login);
+	
+	intervalmovdiv = setInterval(my_timer_login_descend, 100);
+	div_login.style.height=230+"px";
+	div_login1.style.left= 0+"px";
+	div_login2.style.left="1200px";
+	div_login3.style.left="2400px";
+	document.documentElement.scrollTop=0;
+}
+function my_timer_login_descend() {
+	// console.log(divNews.style.top);
+	var divtop=parseInt(divNews.style.top, 10);
+	var divmakn=parseInt(div_maknear.style.top, 10);
+	if(divtop>=280){
+		clearInterval(intervalmovdiv);
+		console.log(divNews.clientHeight);
+		return;
+	}
+	divNews.style.top=  divtop+30+"px";
+	div_maknear.style.top=  divmakn+20+"px";
+	// divNews.style.left=  divtop+10+"px";
+}
+</script>
 
  
 
@@ -887,10 +901,9 @@ p{line-height: 1.1;}
 // echo parcegoogledoc("wfp/WFP.html",array(
 // echo parsegooglehttp("index1.html",array(
 echo parsegooglehttp("https://docs.google.com/document/d/e/2PACX-1vSAox75sL1yTcN4gbYaycpQmS5McJ63H0wgvMc-c5I8qo_HSk15tUJrkLwM2FaLG3Yq6Wa4vHWKqDxz/pub",array(
+'width: 409.48px; height: 221.98px;' => 'width: 100% !important; height: auto !important; ', 
 'width: 657.50px; height: 374.62px;' => ' width: 100% !important; height: auto !important;',
 'width: 660.50px; height: 469.59px;' => ' width: 100% !important; height: auto !important;',
-'"><img alt="img1"' => ' width: 100% !important; height: auto !important;"><img alt="img1"',
-'"><img alt="img2"' => ' width: 100% !important; height: auto !important;"><img alt="img2"',
 '"><img alt="estrutura"' => ' float:left;"><img alt="estrutura"',
 '"><img alt="" src="images/image3.png"' => ' float:left;!important;"><img alt="" src="$addpathimages/image3.png"',
 '"><img alt="" src="images/image2.png" style="' => ' width: 100% !important; height: auto !important;"><img alt="" src="$addpathimages/image2.png" style="width: 100% !important; height: auto !important; ',
@@ -948,14 +961,16 @@ function div_don_fundsf(tog=1){
 	document.documentElement.scrollTop=0;
 	intervalmovdiv = setInterval(myTimer, 10);
 	// console.log("w");
-	div_don_funds.style.height=220+"px";
+	div_swapf(div_don_funds);
+	// div_don_funds.style.height=220+"px";
 }
 
 function btcarregarf(){
-	intervalmovdiv = setInterval(myTimer, 10);
+	// intervalmovdiv = setInterval(myTimer, 10);
 	// console.log("w");
-	divCarregar.style.height=220+"px";
+	// divCarregar.style.height=220+"px";
 	// divNews.style.top= top1+333+"px";
+	div_swapf(divCarregar);
 	inputPay.type = 'tel';
 	inputPay.setSelectionRange(2, 2);
 	inputPay.type = 'Number';
@@ -1019,7 +1034,7 @@ function move_div_login_to3(){
  
 
 function input_pay_f(){
-	div_pay_label.innerHTML="Faça já o check out para poder levantar "+(balance+ parseInt(inputPay.value))+" EUR em batatas doces assadas nas futuras máquinas." ;
+	div_pay_label.innerHTML="Check out now to claim "+(balance+ parseInt(inputPay.value))+" <?php echo $coin;?> worth of strawberries and roasted sweet potatoes in the future machines." ;
 	
 }
  
