@@ -97,7 +97,7 @@ int main() {
 	while ((ch = getch()) != 'q') {
 		GamepadUpdate();
 
-		// if (ch == 'r') 
+		if (ch == 'r') 
 		{
 			for (i = 0; i != GAMEPAD_COUNT; ++i) {
 				// GamepadSetRumble((GAMEPAD_DEVICE)i, 0.25f, 0.25f);

@@ -1873,7 +1873,7 @@ int func(lua_State* L){
 		vstring p(sz);
 		lop(i,0,sz){  
 			p[i]=lua_tostring (L,i+1+1);
-			cot(p[i]);
+			cot1(p[i]);
 		}
 		// string f=lua_tostring (L,1+1);
 		// cot(f);
@@ -2034,8 +2034,8 @@ struct FlEditor:Fl_Text_Editor{
 		if(e==FL_KEYDOWN){
 			if(tipo==0)save();
 			//altgr .
-			if(Fl::event_alt ())cot1("if(Fl::event_alt ()");
-			if(Fl::event_shift ())cot1("if(Fl::event_shift ()");
+			if(Fl::event_alt ())cot("if(Fl::event_alt ()");
+			if(Fl::event_shift ())cot("if(Fl::event_shift ()");
 			// if(Fl::event_alt () && Fl::event_key()==46){
 			if(Fl::event_alt () && Fl::event_key()==120){
 			// if(!Fl::event_shift()  && (Fl::event_key()==65027 || Fl::event_key()==65514)){//altgr
@@ -2056,7 +2056,7 @@ struct FlEditor:Fl_Text_Editor{
 				// run all text
 				lua_str(texto->text());
 			}
-			cot1(Fl::event_key());
+			cot(Fl::event_key());
 		}
 		if(e==FL_PUSH ){
 			// cot(texto->selection_text()); 
@@ -3012,7 +3012,7 @@ int main(){
 	// fparse(fle->texto->text(),9);
  
 	
-	flocv=new flocvs;
+	// flocv=new flocvs;
 	 
 	// setview();
  
