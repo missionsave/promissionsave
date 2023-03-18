@@ -43,8 +43,8 @@ end
 --g3()
 
 function reset()
-movz(-150)
-posa(-90 , 140 , 80 , 120 )
+	movz(-150)
+	posa(-90 , 140 , 80 , 120 )
 
 end
 --reset()
@@ -60,9 +60,8 @@ end
 -- g2()
 
 function lampadas()
-
-posa( 110 , -20 , 80 , 70 )
-movz(-110)
+	posa( 110 , -20 , 80 , 70 )
+	movz(-110)
 end
 
  

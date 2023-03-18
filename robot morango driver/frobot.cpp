@@ -80,6 +80,36 @@ typedef vector<vector<int>> vvint;
 #define pausa getchar();
 // #include "arrayf.hpp"
 // #include "stringf.hpp" 
+
+template<typename T, typename ... Args>
+void print_args(std::stringstream &ss, T first, Args ... args) {
+    if constexpr (std::is_same_v<T, std::string>) {
+        ss << first;
+    } else {
+        ss << first;
+    }
+    if constexpr (sizeof...(args) > 0) {
+        ss << ", ";
+        print_args(ss, args...);
+    }
+}
+#define cotm(...) { \
+    std::stringstream ss; \
+    ss << #__VA_ARGS__ ; \
+    vector<string> vv=split(ss.str(),",");\
+    ss.str("");\
+    auto timeval = std::time(nullptr); \
+    auto tm = *std::localtime(&timeval); \
+    cout << std::put_time(&tm, "%H:%M:%S ");\
+    print_args(ss, __VA_ARGS__);\
+    vector<string> vvv=split(ss.str(),",");\
+    for(int i=0;i<vv.size();i++){\
+    cout<< vv[i]<<"="<<vvv[i]<<"\t";}\    
+    cout<<endl;\
+} 
+
+
+
 #define cot(var) { \
 	auto timeval = std::time(nullptr); \
     auto tm = *std::localtime(&timeval); \
@@ -91,6 +121,7 @@ typedef vector<vector<int>> vvint;
     auto tm_ = *std::localtime(&timeval_); \
     std::cout << std::put_time(&tm_, "%H:%M:%S ") <<#var<<" "<<var<<endl; \
 }
+
 void replace_All(std::string & data, std::string toSearch, std::string replaceStr){
     // Get the first occurrence
     size_t pos = data.find(toSearch);
@@ -1425,6 +1456,7 @@ void posa(vfloat p, vec3 topoint=vec3(0,0,0), float x=0, float y=0, float z=1000
 	// cot("P");
 	// std::thread th([=](float z ){
 	// posa_counter_mtx.lock();
+	cot1(funcn)
 	// cot1(z);
 	posa_erase_mtx.lock();
 	pool.push_back( new posv{p,topoint,0,0,z,0,0,funcn,lock_angle});
@@ -1861,7 +1893,8 @@ int func(lua_State* L){
 	funclock.lock();
 	funcid=id;
 	funclock.unlock();
-	// cot1(funcid)
+	cotm(funcid)
+	// pausa
 	sqlite3_stmt* st;
     sqlite3_prepare_v2(sql3, rprintf("select run from tabRobot where id='%d'",id),-1, &st, NULL);
 	cot(id);
@@ -2501,7 +2534,7 @@ void choice_cbnum(Fl_Widget *w, void *userdata) {
 	flscroll->redraw();
 	sqlite3_finalize(st);
 }
-// http://localhost/vivision/phpliteadmin.php?database=..%2Frobot%5Crobot.sqlite
+// http://localhost/promition/phpliteadmin.php?database=..%2Frobot%5Crobot.sqlite
 void sql3_init(){  
 	Fl_Button* bt13=new Fl_Button(0,  90, 30, 30,"luaTx");
 	bt14=new Fl_Button(30,  90, 30, 30,"bdAll");
@@ -2916,6 +2949,73 @@ void elevator(){
 }
 #endif
 
+
+#if 1 //GAMEPAD
+#include <gamepad.h>
+void Gamepad_Init(){
+	GamepadInit();	 
+  
+	thread gm([](){
+		static const char* button_names[] = {
+			"d-pad up",
+			"d-pad down",
+			"d-pad left",
+			"d-pad right",
+			"start",
+			"back",
+			"left thumb",
+			"right thumb",
+			"left shoulder",
+			"right shoulder",
+			"???",
+			"???",
+			"A",
+			"B",
+			"X",
+			"Y"
+		};
+		for(;;){
+			GamepadUpdate();		 
+			int i,j,k;
+			for (i = 0; i != GAMEPAD_COUNT; ++i) {
+				if (GamepadIsConnected((GAMEPAD_DEVICE)i)) {
+					for (j = 0; j != BUTTON_COUNT; ++j) {
+						if (GamepadButtonTriggered((GAMEPAD_DEVICE)i, (GAMEPAD_BUTTON)j)) {
+							printf("[%d] button triggered: %d %s\n", i, j,button_names[j]);
+							cot1(j);
+			 				if(i==0){ 
+								cot1(ve[0]->angle);
+							}
+							
+						} else if (GamepadButtonReleased((GAMEPAD_DEVICE)i,(GAMEPAD_BUTTON) j)) {
+							printf("[%d] button released: %d  %s\n", i,j, button_names[j]);
+						}
+					}
+					for (j = 0; j != TRIGGER_COUNT; ++j) {
+						if (GamepadTriggerTriggered((GAMEPAD_DEVICE)i, (GAMEPAD_TRIGGER)j)) {
+							printf("[%d] trigger pressed:  %d\n", i, j);
+						} else if (GamepadTriggerReleased((GAMEPAD_DEVICE)i, (GAMEPAD_TRIGGER)j)) {
+							printf("[%d] trigger released: %d\n", i, j);
+						}
+					}
+					for (j = 0; j != STICK_COUNT; ++j) {
+						for (k = 0; k != STICKDIR_COUNT; ++k) {
+							if (GamepadStickDirTriggered((GAMEPAD_DEVICE)i,(GAMEPAD_STICK) j, (GAMEPAD_STICKDIR)k)) {
+								printf("[%d] stick direction:  %d -> %d\n", i, j, k);
+							}
+						}
+					}
+				}
+			}
+			sleepms(50);
+		}
+	});
+	gm.detach();
+}
+#endif
+
+
+
 int main(){
 	combR *cr=new combR(vint{8,4,4});
 	lop(i,0,cr->range){
@@ -2992,7 +3092,8 @@ int main(){
     // in.menubutton()->add("two");
     // in.menubutton()->add("three");
 	
-	sql3_init();
+	sql3_init();	
+	Gamepad_Init();
 	// win->show(); Fl::run(); return 0;
 	
 	fle=new FlEditor(0,150,160,400-150);
@@ -3027,7 +3128,7 @@ int main(){
 	fldbg->textfont(5);
 	fldbg->textsize(14);
 	fldbg->value("<font face=Arial > <br></font>");
-	string fldbgstr="<b>teste</b>";
+	string fldbgstr="<b>Alt+z run</b><br><b>Alt+x run line</b>";
 	fldbg->value(fldbgstr.c_str());
 	
 	//botoes dos angulos

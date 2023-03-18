@@ -31,14 +31,12 @@ ifeq ($(uname_S), Windows)
 	# LDFLAGS+= -lscintillagtk3w 
 	# LDFLAGS+= -ldlibw64 
 	DFLAGS= -DWIN32 -DSCI_LEXER -DSCI_NAMESPACE  -D_CRT_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_WINDOWS -D_USRDLL -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2
-	# DFLAGS+= -DGAMEPAD_STATIC_LIB
 	LDFLAGS+= -l:liblua.a
 	LDFLAGS+= -lfann
 	# LDFLAGS+=  -l:libssh.dll.a
 	# LDFLAGS+=  -lssh2 -l:libz.a
 	LDFLAGS+=  -lssh2 
 	LDFLAGS+=  -lXInput 
-	LDFLAGS+=  -lncursesw
 	# LDFLAGS+=    -l:libssh2.a -l:libz.a
 	# LDFLAGS+= -lflscintillaw64 -lglew32 -l:libglew32.a -lcurl -lBZ2 
 	LDFLAGS+= -l:libfltk_gl.a -l:libfltk.a -liconv   -l:libglew32.a -lopengl32 -lgdi32 -lglu32 -lWs2_32
@@ -62,8 +60,10 @@ ifeq ($(uname_S), Linux)
 	# LDFLAGS+=-ldlibl64  
 	LDFLAGS+= -l:liblua5.2.a
 	# LDFLAGS+= -l:libfann.a
-	LDFLAGS+= -lfann
+	LDFLAGS+= -lfann 
+	LDFLAGS+= -lcurses -ludev 
 	LDFLAGS+= -l:libi2c.a
+	LDFLAGS+= -l:libudev.so
 	# LDFLAGS+= -l:libboost_system.a -l:libboost_chrono.a -l:libboost_serialization.a -l:libboost_iostreams.a -l:libboost_thread.a    -l:libboost_filesystem.a -l:libboost_regex.a 
 	LDFLAGS+=  -lsqlite3 
 	LDFLAGS+=  -l:libssh2.a 

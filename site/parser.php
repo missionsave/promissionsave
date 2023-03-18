@@ -65,6 +65,9 @@ function parsegooglehttp($http,$jsonreplace="",$addpath="",$first=0){
 	$your_text_variable=str_replace("max-width:451.4pt;","",$your_text_variable);  
 
 
+
+
+
 	foreach($jsonreplace as $key => $value){
 	$your_text_variable=str_replace($key,$value,$your_text_variable);
 	}
@@ -106,6 +109,22 @@ function parsegooglehttp($http,$jsonreplace="",$addpath="",$first=0){
 	$your_text_variable=str_replace("Â","",$your_text_variable); //fix links
 	// file_put_contents("./tr.txt",$your_text_variable);
 	// $your_text_variable=file_get_contents("./tr.txt");
+
+	//treat imgs
+	// $your_text_variable = explode('px;"><img', $your_text_variable);
+	// // Loop through each row and remove all characters until 'width:'
+	// foreach ($your_text_variable as &$row) {
+	// $pos = strpos($row, 'width:');
+	// if ($pos !== false) {
+	// 	$row = substr($row, $pos);
+	// }
+	// }
+	// // Implode the modified $your_text_variable with 'width:100%; height:auto;'
+	// $your_text_variable = implode('100%; height:auto;"><img', $your_text_variable);
+
+
+
+
 	return $your_text_variable; 
 }
 ?>

@@ -6,7 +6,7 @@
 // $dbname = "GBtyfP4tfL";
 $servername = "sql108.epizy.com";
 $username = "epiz_29317381";
-$passwords = file('connect.pwd');
+$passwords = file(__DIR__ .'/connect.pwd');
 $password = $passwords[0];
 $dbname = "epiz_29317381_a";
 try {

@@ -1,5 +1,5 @@
 <?php  
-	/*xhttp.php cópia para meeting.vivision.org de vivision.org*/
+	/*xhttp.php cópia para meeting.promition.org de promition.org*/
 	$location="../";
 	$location="../../htdocs/"; 
 	$site="https://".$_SERVER['SERVER_NAME'];
@@ -32,7 +32,7 @@
 <link rel="shortcut icon" href="logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta charset="UTF-8">
-<title>Meeting Vivision</title>
+<title>Meeting Promition</title>
 
 <link rel="manifest" href="manifest.webmanifest">
 
@@ -58,189 +58,189 @@
 
 <head>
 <style>
-html { 
-	scroll-behavior: smooth; 
-	// color: #fff;
-} 
-html, body {
-    // max-width: 100%;
-    overflow-x: hidden;
-}	
-input {
-  outline: 0;
-  border-width: 0 0 2px;
-  border-color: blue
-}
-input:focus {
-  border-color: green
-}
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+	html { 
+		scroll-behavior: smooth; 
+		// color: #fff;
+	} 
+	html, body {
+		// max-width: 100%;
+		overflow-x: hidden;
+	}	
+	input {
+	outline: 0;
+	border-width: 0 0 2px;
+	border-color: blue
+	}
+	input:focus {
+	border-color: green
+	}
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+	}
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-.button {
-  padding:  5px 15px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #3e8f41;
-  
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 4px #999;
-}
+	/* Firefox */
+	input[type=number] {
+	-moz-appearance: textfield;
+	}
+	.button {
+	padding:  5px 15px;
+	font-size: 24px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	background-color: #3e8f41;
+	
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 4px #999;
+	}
 
-.button:hover {background-color: #04AA6D}
+	.button:hover {background-color: #04AA6D}
 
-.button:active {
-  background-color: #04AA6D;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
-}
+	.button:active {
+	background-color: #04AA6D;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+	}
+	.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none; /* Safari */
+		-khtml-user-select: none; /* Konqueror HTML */
+		-moz-user-select: none; /* Old versions of Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+				user-select: none; /* Non-prefixed version, currently
+									supported by Chrome, Edge, Opera and Firefox */
+	}
 
-/* headlines with lines */
-.decorated{
-     overflow: hidden;
-     text-align: center;
- }
-.decorated > span{
-    position: relative;
-    display: inline-block;
-}
-.decorated > span:before, .decorated > span:after{
-    content: '';
-    position: absolute;
-    top: 50%;
-    border-bottom: 1px solid;
-    width: 100px;
-    margin: 0 20px;
-}
-.decorated > span:before{
-    right: 100%;
-}
-.decorated > span:after{
-    left: 100%;
-}
+	/* headlines with lines */
+	.decorated{
+		overflow: hidden;
+		text-align: center;
+	}
+	.decorated > span{
+		position: relative;
+		display: inline-block;
+	}
+	.decorated > span:before, .decorated > span:after{
+		content: '';
+		position: absolute;
+		top: 50%;
+		border-bottom: 1px solid;
+		width: 100px;
+		margin: 0 20px;
+	}
+	.decorated > span:before{
+		right: 100%;
+	}
+	.decorated > span:after{
+		left: 100%;
+	}
 
-#overlay {
-	display: none;
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-    z-index:50;
-}
+	#overlay {
+		display: none;
+		position: fixed; 
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #000;
+		opacity: 0.8;
+		filter: alpha(opacity=80);
+		z-index:50;
+	}
 </style>
 <style>  /*buttonpaypal*/
 	
-.buttonpp { //background-image: linear-gradient(#A9A932, #E5D153, #E9CC0E);
- width: 170px; //change width of button here
-  height: 32px;
- color: #2e3192;
- text-decoration: none;
- display: block;
- text-align: center;
- position: relative;
+	.buttonpp { //background-image: linear-gradient(#A9A932, #E5D153, #E9CC0E);
+	width: 170px; //change width of button here
+	height: 32px;
+	color: #2e3192;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	position: relative;
 
- /* BACKGROUND GRADIENTS */
- background: #FEE1A5;
- background: -moz-linear-gradient(top, #FFF, #FEE1A5 50%, #FFB829 51%,
-#FEE1A5 95%, #FEE1A5);
- background: -webkit-gradient(linear, left top, left bottom,
-color-stop(0, #FFF), color-stop(.5, #FEE1A5), color-stop(.51, #FFB829),
-color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
+	/* BACKGROUND GRADIENTS */
+	background: #FEE1A5;
+	background: -moz-linear-gradient(top, #FFF, #FEE1A5 50%, #FFB829 51%,
+	#FEE1A5 95%, #FEE1A5);
+	background: -webkit-gradient(linear, left top, left bottom,
+	color-stop(0, #FFF), color-stop(.5, #FEE1A5), color-stop(.51, #FFB829),
+	color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
 
- /* BORDER RADIUS */
- -moz-border-radius: 18px;
- -webkit-border-radius: 18px;
- border-radius: 18px;
+	/* BORDER RADIUS */
+	-moz-border-radius: 18px;
+	-webkit-border-radius: 18px;
+	border-radius: 18px;
 
- border-bottom: 1px solid #FFF;
- border-top: 1px solid #FFB829;
- border-left: 1px solid #FEE1A5;
- border-right: 1px solid #FEE1A5;
+	border-bottom: 1px solid #FFF;
+	border-top: 1px solid #FFB829;
+	border-left: 1px solid #FEE1A5;
+	border-right: 1px solid #FEE1A5;
 
- /* TEXT SHADOW */
+	/* TEXT SHADOW */
 
- text-shadow: 0px 1px 1px white;
+	text-shadow: 0px 1px 1px white;
 
- /* BOX SHADOW */
- -moz-box-shadow: 0 1px 3px #777;
- -webkit-box-shadow: 0 1px 3px #777;
- box-shadow: 0 1px 3px #777;
- font: italic bold 18px/32px helvetica, arial;
-}
+	/* BOX SHADOW */
+	-moz-box-shadow: 0 1px 3px #777;
+	-webkit-box-shadow: 0 1px 3px #777;
+	box-shadow: 0 1px 3px #777;
+	font: italic bold 18px/32px helvetica, arial;
+	}
 
- /* WHILE HOVERED */
- .buttonpp:hover {
- background: #FEE1A5;
- background: -moz-linear-gradient(top, #FFF, #FEE1A5 50%,
-#FFB829 51%, #FEE1A5 95%, #FEE1A5);
- background: -webkit-gradient(linear, left top, left bottom,
-color-stop(0, #FFF), color-stop(.5, #FEE1A5), color-stop(.51, #FFB829),
-color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
- -moz-box-shadow: 0 1px 2px black;
- -webkit-box-shadow: 0 1px 2px black;
- }
+	/* WHILE HOVERED */
+	.buttonpp:hover {
+	background: #FEE1A5;
+	background: -moz-linear-gradient(top, #FFF, #FEE1A5 50%,
+	#FFB829 51%, #FEE1A5 95%, #FEE1A5);
+	background: -webkit-gradient(linear, left top, left bottom,
+	color-stop(0, #FFF), color-stop(.5, #FEE1A5), color-stop(.51, #FFB829),
+	color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
+	-moz-box-shadow: 0 1px 2px black;
+	-webkit-box-shadow: 0 1px 2px black;
+	}
 
- /* WHILE BEING CLICKED */
- .buttonpp:active {
- -moz-box-shadow: 0 2px 6px black;
- -webkit-box-shadow: 0 2px 6px black;
-}
-</style>
-<style> //menu
-.menui {
-  display: inline-block;
-  cursor: pointer;
-}
+	/* WHILE BEING CLICKED */
+	.buttonpp:active {
+	-moz-box-shadow: 0 2px 6px black;
+	-webkit-box-shadow: 0 2px 6px black;
+	}
+	</style>
+	<style> //menu
+	.menui {
+	display: inline-block;
+	cursor: pointer;
+	}
 
-.bar1, .bar2, .bar3 {
-  width: 35px;
-  height: 5px;
-  background-color: #fff;
-  margin: 6px 0;
-  transition: 0.4s;
-}
+	.bar1, .bar2, .bar3 {
+	width: 35px;
+	height: 5px;
+	background-color: #fff;
+	margin: 6px 0;
+	transition: 0.4s;
+	}
 
-.change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-  transform: rotate(-45deg) translate(-9px, 6px);
-}
+	.change .bar1 {
+	-webkit-transform: rotate(-45deg) translate(-9px, 6px);
+	transform: rotate(-45deg) translate(-9px, 6px);
+	}
 
-.change .bar2 {opacity: 0;}
+	.change .bar2 {opacity: 0;}
 
-.change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
-  transform: rotate(45deg) translate(-8px, -8px);
-}
+	.change .bar3 {
+	-webkit-transform: rotate(45deg) translate(-8px, -8px);
+	transform: rotate(45deg) translate(-8px, -8px);
+	}
 </style>
 <style>
-.botoes_centrados{
-	display: flex; justify-content: center;  margin: auto; margin-top:20px; left: 0; right: 0; max-width: 200px;
-}
+	.botoes_centrados{
+		display: flex; justify-content: center;  margin: auto; margin-top:20px; left: 0; right: 0; max-width: 200px;
+	}
 </style>
 </head>
 
@@ -536,7 +536,7 @@ color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
 	
 	</div>	
 	<div id="div_donate">
-	div_donate<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>Teste<br>teste<br>
+	https://docs.google.com/document/d/e/2PACX-1vTRiTXko4fa4qVN9TMIIzsf9hw7NJ21JXGwKpFsdrprYw1Y_ZrqGDFQqVo1icCjVkBIDY7SjXFlZXBI/pub
 	<img style="width:100px; height:100px; border-radius: 50%;" src="<?php echo $just_domain;?>/pic/13.jpg">
 	</div>
 	<div id="div_near">
@@ -620,7 +620,7 @@ function btn_perfil_continuarf(){
 		return;
 	}
 	var xhttp = new XMLHttpRequest();
-	// /*xhttp cópia para meeting.vivision.org de vivision.org*/
+	// /*xhttp cópia para meeting.promition.org de promition.org*/
 	xhttp.open("POST", "xhttp.php", true);
 	var params = 'action=perfil_1_set&location='+_location+"&id="+id+"&gender="+gender.value+"&gender_looking="+gender_looking.value+"&birth="+dateoby.value+"-"+dateobm.value+"-"+dateobd.value;
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
@@ -641,7 +641,7 @@ function btn_perfil_salvarf(){
 	data=date.getUTCFullYear()+'-'+(date.getUTCMonth()+1)+'-'+date.getUTCDate()+' '+date.getUTCHours()+':'+date.getUTCMinutes()+':'+date.getUTCSeconds();
 	// console.log(data);
 	var xhttp = new XMLHttpRequest();
-	// /*xhttp cópia para meeting.vivision.org de vivision.org*/
+	// /*xhttp cópia para meeting.promition.org de promition.org*/
 	xhttp.open("POST", "xhttp.php", true);
 	var params = 'action=perfil_2_set&location='+_location+"&id="+id+"&data="+data+"&nome="+nome.value+"&aboutme="+aboutme.value+"&altura="+(altura.value==""?0:altura.value)+"&look="+look.value+"&drink="+drink.value+"&smoke="+smoke.value+"&children="+children.value+"&education="+education.value+"&profession="+profession.value;
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
@@ -752,7 +752,7 @@ function bt_logoutf(){
 	confirmButtonText: 'Sair'
 	}).then((result) => {
 	if (result.isConfirmed) {
-		document.cookie = "vivision=;";
+		document.cookie = "promition=;";
 		document.location="<?php echo $site; ?>";
 	}
 	});
@@ -786,7 +786,7 @@ function geoFindMe() {
 		var latitude  = position.coords.latitude;
 		var longitude = position.coords.longitude; 
 		var xhttp = new XMLHttpRequest();
-		// /*xhttp cópia para meeting.vivision.org de vivision.org*/
+		// /*xhttp cópia para meeting.promition.org de promition.org*/
 		xhttp.open("POST", "xhttp.php", true);
 		var params = 'action=setlatlong&location='+_location+"&lat="+latitude+"&long="+longitude+"&id="+id;
 		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  

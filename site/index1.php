@@ -1,36 +1,24 @@
 <?php //Comments
 	
-// https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-8GA30407VK1630742
+	// https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-8GA30407VK1630742
 
-$webview=0;
-//For iOS
-if ((strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false)) {
-	$webview=1;
-} 
-//For Android
-// echo $_SERVER['HTTP_X_REQUESTED_WITH'];
-if ($_SERVER['HTTP_X_REQUESTED_WITH'] != "") {
-	$webview=1;
-} 
-
+    $webview=0;
+    //For iOS
+    if ((strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false)) {
+        $webview=1;
+    } 
+    //For Android
+    // echo $_SERVER['HTTP_X_REQUESTED_WITH'];
+    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != "") {
+        $webview=1;
+    } 
+ 
 ?>
 
-<?php 
-	/*
-	$hash = '<script>document.writeln(window.location.hash.replace("#", ""));</script>';
-echo $hash;
-	//nao funciona
-	echo "rr".strpos($hash,"script");
-	if( strpos($hash,"cb")!== false ){
-	echo "fo";
-	// echo 'window.fbAsyncInit=fbentrar;';
-	}
-	return;
-	*/
-?>
+ 
 
 <?php //Global vars
-/* 	// $site="vivision.org";
+	/* 	// $site="promition.org";
 	// $site="www.".$site;
 	// $site="https://".$site;
 	$site="https://".$_SERVER['SERVER_NAME'];
@@ -63,8 +51,8 @@ echo $hash;
 
 <?php //utils
 function setCookieToken($token){ 
-	echo '<script>setCookie("vivisiont","'.$token.'",365);</script>';
-	$_COOKIE["vivisiont"]=$token;
+	echo '<script>setCookie("promitiont","'.$token.'",365);</script>';
+	$_COOKIE["promitiont"]=$token;
 }
 
 // https://stackoverflow.com/questions/22143250/xmlhttprequest-cross-domain
@@ -89,7 +77,7 @@ if(@$_POST["action"]=="test")
 
 <?php //check if have token logged then autolog
 	// create_token();
-	// if(@$_COOKIE["vivisionl2"]!=""){
+	// if(@$_COOKIE["promitionl2"]!=""){
 	// echo "on";
 	
 // }
@@ -99,7 +87,7 @@ if(@$_POST["action"]=="test")
 
 <?php //reverse geo
  
-
+ 
 
 function reverse_geo($lat,$long){
 	$curl = curl_init();
@@ -131,6 +119,36 @@ function reverse_geo($lat,$long){
 	}
 }
 ?>
+<?php  
+	/*xhttp.php cópia para meeting.promition.org de promition.org*/
+	// $location="./";
+	$location="../../htdocs/"; 
+	$site="https://".$_SERVER['SERVER_NAME'];
+	$just_domain = "https://".preg_replace("/^(.*\.)?([^.]*\..*)$/", "$2", $_SERVER['HTTP_HOST']);
+	$composer =$location.'vendor/autoload.php';	
+	$id=0;
+	$name="nome";
+	$email="email";
+	// $lat=39.3273571;
+	$long=-8.937850;
+	$lang=0;
+	$idioms=array("en","pt","es","fr","it");
+	$langbr="en";
+	$coin="USD";
+	if(@$_SERVER['HTTP_ACCEPT_LANGUAGE'])$langbr = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	if( @$_COOKIE['lang'] )$langbr=$_COOKIE['lang'];
+	// $langbr="ar";
+	// $langbr="en";
+	if($langbr!="en")$coin="EUR";
+	$balance=0;
+	require_once("connect.php");	
+	require_once( "token.php");	
+	require_once( "dict.php");	
+	require_once($location."vendor/autoload.php");	
+	require_once($location."google_login.php");	
+	require_once($location."facebook_login.php");
+	require_once("parser.php");
+?>
 
 <!DOCTYPE html>
 <html  lang="<?php echo $langbr;?>" >
@@ -146,14 +164,15 @@ function reverse_geo($lat,$long){
 <meta charset="UTF-8">
  
 <meta property="og:type"               content="article" />
-<meta property="og:title"              content="Promissionsave" />
+<meta property="og:title"              content="Promition" />
 <meta property="og:description"        content="By buying strawberries and roasted sweet potatoes here, you are saving people from hunger." />
-<meta property="og:image"              content="https://promissionsave.com/images/plantel-de-fresones-albion-520x520.jpeg" />
+<meta property="og:image"              content="https://promition.org/images/plantel-de-fresones-albion-520x520.jpeg" />
 
 
-<title>Promissionsave alpha</title>
+<title class='notranslate'>Promition alpha</title>
+
 <style>
-.loader {
+	.loader {
     width: 48px;
     height: 48px;
     border: 5px solid blue;
@@ -180,35 +199,7 @@ function reverse_geo($lat,$long){
 	div_loader.style.display="block";
 </script>
 
-<?php  
-	/*xhttp.php cópia para meeting.vivision.org de vivision.org*/
-	// $location="./";
-	$location="../../htdocs/"; 
-	$site="https://".$_SERVER['SERVER_NAME'];
-	$just_domain = "https://".preg_replace("/^(.*\.)?([^.]*\..*)$/", "$2", $_SERVER['HTTP_HOST']);
-	$composer =$location.'vendor/autoload.php';	
-	$id=0;
-	$name="nome";
-	$email="email";
-	// $lat=39.3273571;
-	$long=-8.937850;
-	$lang=0;
-	$idioms=array("en","pt","es","fr","it");
-	$langbr="en";
-	if(@$_SERVER['HTTP_ACCEPT_LANGUAGE'])$langbr = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-	if( @$_COOKIE['lang'] )$langbr=$_COOKIE['lang'];
-	// $langbr="ar";
-	// $langbr="en";
-	// $langbr="pt-PT";
-	$balance=10;
-	require_once("connect.php");	
-	require_once( "token.php");	
-	require_once( "dict.php");	
-	require_once($location."vendor/autoload.php");	
-	require_once($location."google_login.php");	
-	require_once($location."facebook_login.php");
-	require_once("parser.php");
-?>
+
 
 
 
@@ -227,206 +218,207 @@ function reverse_geo($lat,$long){
 
 
 <head>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7469281181086429"
+     crossorigin="anonymous"></script>
 <style>
-.ml2 {
-  font-weight: 900;
-  font-size: 18px;
-}
-.ml2 .word {
-  display: inline-block;
-  line-height: 1em; 
-  vertical-align: text-top;
-  color: #F5F5F5;
-  text-shadow: 1px 1px 2px black;
-}
-.ml3 {
-  font-weight: 900;
-  font-size: 18px;
-}
-.ml3 .word {
-  display: inline-block;
-  line-height: 1em; 
-  vertical-align: text-top;
-  color: #F5F5F5;
-  text-shadow: 1px 1px 2px black;
-} 
+	.ml2 {
+	font-weight: 900;
+	font-size: 18px;
+	}
+	.ml2 .word {
+	display: inline-block;
+	line-height: 1em; 
+	vertical-align: text-top;
+	color: #F5F5F5;
+	text-shadow: 1px 1px 2px black;
+	}
+	.ml3 {
+	font-weight: 900;
+	font-size: 18px;
+	}
+	.ml3 .word {
+	display: inline-block;
+	line-height: 1em; 
+	vertical-align: text-top;
+	color: #F5F5F5;
+	text-shadow: 1px 1px 2px black;
+	} 
 </style>
 <style>
-.center_flex {
-  display: flex;flex-direction: row;   flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-  
-}	
+	.center_flex {
+	display: flex;flex-direction: row;   flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;
 	
+	}	
+		
+		
+	html { 
+		scroll-behavior: smooth; 
+		// color: #fff;
+	} 
+	html, body {
+		// max-width: 100%;
+		overflow-x: hidden;
+	}	
+	input {
+	outline: 0;
+	border-width: 0 0 2px;
+	border-color: blue
+	}
+	input:focus {
+	border-color: green
+	}
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+	}
+
+	/* Firefox */
+	input[type=number] {
+	-moz-appearance: textfield;
+	}
+	.button {
+	padding:  5px 15px;
+	font-size: 24px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	background-color: #3e8f41;
 	
-html { 
-	scroll-behavior: smooth; 
-	// color: #fff;
-} 
-html, body {
-    // max-width: 100%;
-    overflow-x: hidden;
-}	
-input {
-  outline: 0;
-  border-width: 0 0 2px;
-  border-color: blue
-}
-input:focus {
-  border-color: green
-}
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 4px #999;
+	}
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-.button {
-  padding:  5px 15px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #3e8f41;
-  
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 4px #999;
-}
+	.button:hover {background-color: #04AA6D}
 
-.button:hover {background-color: #04AA6D}
+	.button:active {
+	background-color: #04AA6D;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+	}
+	.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none; /* Safari */
+		-khtml-user-select: none; /* Konqueror HTML */
+		-moz-user-select: none; /* Old versions of Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+				user-select: none; /* Non-prefixed version, currently
+									supported by Chrome, Edge, Opera and Firefox */
+	}
 
-.button:active {
-  background-color: #04AA6D;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
-}
-
-/* headlines with lines */
-.decorated{
-     overflow: hidden;
-     text-align: center;
- }
-.decorated > span{
-    position: relative;
-    display: inline-block;
-}
-.decorated > span:before, .decorated > span:after{
-    content: '';
-    position: absolute;
-    top: 50%;
-    border-bottom: 1px solid;
-    width: 100px;
-    margin: 0 20px;
-}
-.decorated > span:before{
-    right: 100%;
-}
-.decorated > span:after{
-    left: 100%;
-}
+	/* headlines with lines */
+	.decorated{
+		overflow: hidden;
+		text-align: center;
+	}
+	.decorated > span{
+		position: relative;
+		display: inline-block;
+	}
+	.decorated > span:before, .decorated > span:after{
+		content: '';
+		position: absolute;
+		top: 50%;
+		border-bottom: 1px solid;
+		width: 100px;
+		margin: 0 20px;
+	}
+	.decorated > span:before{
+		right: 100%;
+	}
+	.decorated > span:after{
+		left: 100%;
+	}
 </style>
 <style>  /*buttonpaypal*/
-	
-.buttonpp { //background-image: linear-gradient(#A9A932, #E5D153, #E9CC0E);
- //width: 170px; //change width of button here
-  height: 32px;
- color: #2e3192;
- text-decoration: none;
- cursor: pointer;
- display: block;
- text-align: center;
- position: relative;
+		
+	.buttonpp { //background-image: linear-gradient(#A9A932, #E5D153, #E9CC0E);
+	//width: 170px; //change width of button here
+	height: 32px;
+	color: #2e3192;
+	text-decoration: none;
+	cursor: pointer;
+	display: block;
+	text-align: center;
+	position: relative;
 
- /* BACKGROUND GRADIENTS */
- background: #FEE1A5;
- background: -moz-linear-gradient(top, #FFF, #FEE1A5 50%, #FFB829 51%,
-#FEE1A5 95%, #FEE1A5);
- background: -webkit-gradient(linear, left top, left bottom,
-color-stop(0, #FFF), color-stop(.5, #FEE1A5), color-stop(.51, #FFB829),
-color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
+	/* BACKGROUND GRADIENTS */
+	background: #FEE1A5;
+	background: -moz-linear-gradient(top, #FFF, #FEE1A5 50%, #FFB829 51%,
+	#FEE1A5 95%, #FEE1A5);
+	background: -webkit-gradient(linear, left top, left bottom,
+	color-stop(0, #FFF), color-stop(.5, #FEE1A5), color-stop(.51, #FFB829),
+	color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
 
- /* BORDER RADIUS */
- -moz-border-radius: 18px;
- -webkit-border-radius: 18px;
- border-radius: 18px;
+	/* BORDER RADIUS */
+	-moz-border-radius: 18px;
+	-webkit-border-radius: 18px;
+	border-radius: 18px;
 
- border-bottom: 1px solid #FFF;
- border-top: 1px solid #FFB829;
- border-left: 1px solid #FEE1A5;
- border-right: 1px solid #FEE1A5;
+	border-bottom: 1px solid #FFF;
+	border-top: 1px solid #FFB829;
+	border-left: 1px solid #FEE1A5;
+	border-right: 1px solid #FEE1A5;
 
- /* TEXT SHADOW */
+	/* TEXT SHADOW */
 
- text-shadow: 0px 1px 1px white;
+	text-shadow: 0px 1px 1px white;
 
- /* BOX SHADOW */
- -moz-box-shadow: 0 1px 3px #777;
- -webkit-box-shadow: 0 1px 3px #777;
- box-shadow: 0 1px 3px #777;
- font: italic bold 18px/32px helvetica, arial;
-}
+	/* BOX SHADOW */
+	-moz-box-shadow: 0 1px 3px #777;
+	-webkit-box-shadow: 0 1px 3px #777;
+	box-shadow: 0 1px 3px #777;
+	font: italic bold 18px/32px helvetica, arial;
+	}
 
- /* WHILE HOVERED */
- .buttonpp:hover {
- background: #FEE1A5;
- background: -moz-linear-gradient(top, #FFF, #FEE1A5 50%,
-#FFB829 51%, #FEE1A5 95%, #FEE1A5);
- background: -webkit-gradient(linear, left top, left bottom,
-color-stop(0, #FFF), color-stop(.5, #FEE1A5), color-stop(.51, #FFB829),
-color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
- -moz-box-shadow: 0 1px 2px black;
- -webkit-box-shadow: 0 1px 2px black;
- }
+	/* WHILE HOVERED */
+	.buttonpp:hover {
+	background: #FEE1A5;
+	background: -moz-linear-gradient(top, #FFF, #FEE1A5 50%,
+	#FFB829 51%, #FEE1A5 95%, #FEE1A5);
+	background: -webkit-gradient(linear, left top, left bottom,
+	color-stop(0, #FFF), color-stop(.5, #FEE1A5), color-stop(.51, #FFB829),
+	color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
+	-moz-box-shadow: 0 1px 2px black;
+	-webkit-box-shadow: 0 1px 2px black;
+	}
 
- /* WHILE BEING CLICKED */
- .buttonpp:active {
- -moz-box-shadow: 0 2px 6px black;
- -webkit-box-shadow: 0 2px 6px black;
-}
-</style>
-<style> //menu
-.menui {
-  display: inline-block;
-  cursor: pointer;
-}
+	/* WHILE BEING CLICKED */
+	.buttonpp:active {
+	-moz-box-shadow: 0 2px 6px black;
+	-webkit-box-shadow: 0 2px 6px black;
+	}
+	</style>
+	<style> //menu
+	.menui {
+	display: inline-block;
+	cursor: pointer;
+	}
 
-.bar1, .bar2, .bar3 {
-  width: 35px;
-  height: 5px;
-  background-color: #fff;
-  margin: 6px 0;
-  transition: 0.4s;
-}
+	.bar1, .bar2, .bar3 {
+	width: 35px;
+	height: 5px;
+	background-color: #fff;
+	margin: 6px 0;
+	transition: 0.4s;
+	}
 
-.change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-  transform: rotate(-45deg) translate(-9px, 6px);
-}
+	.change .bar1 {
+	-webkit-transform: rotate(-45deg) translate(-9px, 6px);
+	transform: rotate(-45deg) translate(-9px, 6px);
+	}
 
-.change .bar2 {opacity: 0;}
+	.change .bar2 {opacity: 0;}
 
-.change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
-  transform: rotate(45deg) translate(-8px, -8px);
-}
+	.change .bar3 {
+	-webkit-transform: rotate(45deg) translate(-8px, -8px);
+	transform: rotate(45deg) translate(-8px, -8px);
+	}
 </style>
 
 <script>
@@ -434,142 +426,137 @@ color-stop(.95, #FEE1A5), color-stop(.96, #FEE1A5), to(#FEE1A5));
 	
 </script>
 <script> <!-- cookie -->
-function setCookie(cname,cvalue,exdays) {
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays*24*60*60*1000));
-	var expires = "expires=" + d.toGMTString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-	var name = cname + "=";
-	var decodedCookie = decodeURIComponent(document.cookie);
-	var ca = decodedCookie.split(';');
-	for(var i = 0; i < ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) == 0) {
-			return c.substring(name.length, c.length);
-		}
+	function setCookie(cname,cvalue,exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires=" + d.toGMTString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 	}
-	return "";
-}
-function gentoken(){
-	document.getElementById('token').value=md5(Math.random()+document.getElementById('email').value);
-}
-function test(){
-	// var token=getCookie("bpmfund");				
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("POST", "index.php", true);
-	var params = 'action=test';
-	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); 
-	//xhttp.onreadystatechange = function () {OnReadyStateChanged (xhttp, form)};;
-	xhttp.onreadystatechange = function () { 
-		// obj = JSON.parse(xhttp.responseText);			  
-		// document.getElementById('amount').value=Number(obj.amount).toString();
-		// document.getElementById('comment').value=(obj.comment).toString();
-		// document.getElementById('name').value=(obj.name).toString();
-		// document.getElementById('email').value=(obj.email).toString();
-		// amountFunction();
-		console.log("resp1: "+xhttp.responseText);
-		// if(xhttp.responseText.includes('added')){
-		// Swal.fire("E-mail confirmado. Escolha a quantia a investir e salve." ,'', 'success');
-		// }else{
-		// 
-		// }
-		
-		
-	}; 
-	
-	xhttp.send(params); 
-	
-} 
-test();
-function parseJwt (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
 
-    return JSON.parse(jsonPayload);
-};
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+	function gentoken(){
+		document.getElementById('token').value=md5(Math.random()+document.getElementById('email').value);
+	}
+	function test(){
+		// var token=getCookie("bpmfund");				
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "index.php", true);
+		var params = 'action=test';
+		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); 
+		//xhttp.onreadystatechange = function () {OnReadyStateChanged (xhttp, form)};;
+		xhttp.onreadystatechange = function () { 
+			// obj = JSON.parse(xhttp.responseText);			  
+			// document.getElementById('amount').value=Number(obj.amount).toString();
+			// document.getElementById('comment').value=(obj.comment).toString();
+			// document.getElementById('name').value=(obj.name).toString();
+			// document.getElementById('email').value=(obj.email).toString();
+			// amountFunction();
+			console.log("resp1: "+xhttp.responseText);
+			// if(xhttp.responseText.includes('added')){
+			// Swal.fire("E-mail confirmado. Escolha a quantia a investir e salve." ,'', 'success');
+			// }else{
+			// 
+			// }
+			
+			
+		}; 
+		
+		xhttp.send(params); 
+		
+	} 
+	test();
+	function parseJwt (token) {
+		var base64Url = token.split('.')[1];
+		var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+		var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+
+		return JSON.parse(jsonPayload);
+	};
 </script>
 
 
 
 </head>
 <body> 
+<div id="div_all" style="display:block;">
 <div id="mdiv" style=" max-width: 690px;  position: fixed;  margin:   auto; left: 0; right: 0; top:0px; z-index:1;  width: 100%; height:52px; color: #fff;   background-image:url(fundoshelf.jpg) ">
 	
 <script>//add image laterals
-var div = document.createElement("div");
-var divr1 = document.createElement("div");
-var divr = document.createElement("div");
-document.body.appendChild(div);
-document.body.appendChild(divr);
-document.body.appendChild(divr1);
-function adjust(){
-	if(window.innerWidth<900){div.style.width="0px"; return;}
-	var  dw=(window.innerWidth-mdiv.offsetWidth)/2-8;
-	var  dh=(window.innerHeight );
-	div.style.position = "fixed";
-	div.style.width = dw+"px";
-	div.style.height = dh+"px";
-	div.style.left = "0px";
-	div.style.top = "0px";
-	div.style.background = "#8B0000";
-	div.style.color = "white";
-	div.style.zIndex  = "0";
-	div.innerHTML = '<img src="batata-doce-cozida-no-micro-ondas-1024x576.jpg" style="width:100%;height:auto;"/>';
+	var div = document.createElement("div");
+	var divr1 = document.createElement("div");
+	var divr = document.createElement("div");
+	document.body.appendChild(div);
+	document.body.appendChild(divr);
+	document.body.appendChild(divr1);
+	function adjust(){
+		if(window.innerWidth<900){div.style.width="0px"; return;}
+		var  dw=(window.innerWidth-mdiv.offsetWidth)/2-8;
+		var  dh=(window.innerHeight );
+		div.style.position = "fixed";
+		div.style.width = dw+"px";
+		div.style.height = dh+"px";
+		div.style.left = "0px";
+		div.style.top = "0px";
+		div.style.background = "#8B0000";
+		div.style.color = "white";
+		div.style.zIndex  = "0";
+		div.innerHTML = '<img src="batata-doce-cozida-no-micro-ondas-1024x576.jpg" style="width:100%;height:auto;"/>';
+		
+		divr1.style.position = "fixed";
+		divr1.style.width = dw+"px";
+		divr1.style.height = dh+"px";
+		divr1.style.right = "0px";
+		divr1.style.top = "0px";
+		divr1.style.background = "#8B0000";
+		divr1.style.color = "white";
+		divr1.style.zIndex  = "0";
+		divr1.innerHTML = '<img src="Garden_strawberry_(Fragaria_×_ananassa)_single2.jpg" style="width:100%;height:auto;"/>  <img src="como-plantar-batata-doce-em-vaso-3.jpg" style="width:100%;height:auto;"/>';
+		
 	
-	divr1.style.position = "fixed";
-	divr1.style.width = dw+"px";
-	divr1.style.height = dh+"px";
-	divr1.style.right = "0px";
-	divr1.style.top = "0px";
-	divr1.style.background = "#8B0000";
-	divr1.style.color = "white";
-	divr1.style.zIndex  = "0";
-	divr1.innerHTML = '<img src="Garden_strawberry_(Fragaria_×_ananassa)_single2.jpg" style="width:100%;height:auto;"/>  <img src="como-plantar-batata-doce-em-vaso-3.jpg" style="width:100%;height:auto;"/>';
-	
- 
-} 
-adjust(); 
-/*
-var xhttp = new XMLHttpRequest(); 
-// <?php compilefilehtmlcssinline("calculator.html"); ?>
-// xhttp.open("POST", "cis_calculator.html", true);
-xhttp.open("POST", "calculator.html", true);
-xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
-xhttp.onreadystatechange = function () {   
-	const scriptEl = document.createRange().createContextualFragment(xhttp.responseText);
-	divr.innerHTML="";
-	divr.appendChild(scriptEl);
-	// divr.innerHTML=xhttp.responseText;
-	// var scripts = divr.getElementsByTagName("script");
-	// for (var i = 0; i < scripts.length; i++) {
-		// eval(scripts[i].innerText);
-	// }
-}; 
-xhttp.send("");
-*/
-window.onresize = function(){adjust();};
-	
-</script>
-	
+	} 
+	adjust(); 
+	// /*
+	// var xhttp = new XMLHttpRequest(); 
+	// // <?php //compilefilehtmlcssinline("calculator.html"); ?>
+	// // xhttp.open("POST", "cis_calculator.html", true);
+	// xhttp.open("POST", "calculator.html", true);
+	// xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
+	// xhttp.onreadystatechange = function () {   
+	// 	const scriptEl = document.createRange().createContextualFragment(xhttp.responseText);
+	// 	divr.innerHTML="";
+	// 	divr.appendChild(scriptEl);
+	// 	// divr.innerHTML=xhttp.responseText;
+	// 	// var scripts = divr.getElementsByTagName("script");
+	// 	// for (var i = 0; i < scripts.length; i++) {
+	// 		// eval(scripts[i].innerText);
+	// 	// }
+	// }; 
+	// xhttp.send("");
+	// */
+	window.onresize = function(){adjust();};
+		
+</script> 
 	
 	<div style="margin: auto;"> 
 	
 	<div id="divEntrar" style=" max-width: 690px;  position: fixed;  margin:   auto; left: 0; right: 0; top:0px; z-index:2;  width: 100%; height:50px; font-size: 10px;  "> 
-	
-		<div id="div_menu_x" class="menui" style="float:left; margin-left:5px; " onclick="menuf(this)">
-		  <div class="bar1"></div>
-		  <div class="bar2"></div>
-		  <div class="bar3"></div>
-		</div>
+		<button id="button_home" class="buttonpp notranslatef" style="float:left;  " onclick="window.location='promition.org'">root</button>
 		<div style=" margin-right: auto;  margin-left: auto;   max-width:250px;  ">
 			<div style="  padding-left:0px;  word-wrap: break-word;  ">Vision - <?php echo d('Fighting hunger') ?><br> </div>
 
@@ -582,16 +569,16 @@ window.onresize = function(){adjust();};
 		<script> 
 		function webview(){ 
 			if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)  && <?php echo $webview;?>) {
-				window.location="intent:googlechrome://navigate?url=promissionsave.com?i=1#Intent;end";	
+				window.location="intent:googlechrome://navigate?url=promition.org?s=login#Intent;end";	
 			}  
 		}
 		</script>
-		<button id="buttonEntrar" class="buttonpp notranslate" style="float:right;  " onclick='webview(); btentrar();'><?php echo d('login')?></button>
+		<!-- <button id="buttonEntrar" class="buttonpp notranslate" style="float:right;  " onclick='webview(); btentrar();'><?php //echo d('login')?></button> -->
 		
-		<button id="buttonCarregar" class="buttonpp" style="max-width:110px; float:right; margin-top:0px;  display:none; color:#000; " onclick='webview(); btcarregarf();'><?php echo d('buy')?></button>
+		<!-- <button id="buttonCarregar" class="buttonpp" style="max-width:110px; float:right; margin-top:0px;  display:none; color:#000; " onclick='webview(); btcarregarf();'><?php //echo d('buy')?></button> -->
 		
-		<div id="div_balance" style="border-left:solid; border-right:solid; border-top:solid; float:right; margin-right:10px; padding: 5px 10px; "><?php echo d("Balance").":<br>".$balance."EUR"; ?>
-		</div>
+		<!-- <div id="div_balance" style="border-left:solid; border-right:solid; border-top:solid; float:right; margin-right:10px; padding: 5px 10px; "><?php //echo d("Balance").":<br>".$balance.$coin; ?>
+		</div> -->
 	</div>
 	
 	
@@ -625,9 +612,9 @@ window.onresize = function(){adjust();};
 				Donate funds to poor people
 			</a>
 		<br>	
-		<a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:13px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;" id="btn_donate_funds" onClick="">
+		<!-- <a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:13px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;" id="btn_donate_funds" onClick="">
 				Transfer funds between our accounts - Planned
-		</a>
+		</a> -->
 		<br>	
 		
 		<!--<a href="biography.html" class="buttonpp" style="margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="">
@@ -635,7 +622,7 @@ window.onresize = function(){adjust();};
 		</a>
 		<br>-->	
 		
-		<a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="document.cookie = 'vivision' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'; location.reload();">
+		<a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="document.cookie = 'promition' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'; location.reload();">
 				Logout
 		</a>
 		<br>	
@@ -664,12 +651,11 @@ if(@$_GET['action']=="paypal_confirm"){
  
 ?>
 
-<div id="div_body" style="display:none; max-width: 690px; width:100%; height:100%; position:absolute; top:52px;   flex-direction: row;  ">
 
 
-<div id="divCarregar" class="w3-card-4" style="opacity:50%; max-width: 1000px;  position: fixed;  margin:   auto; left: 0; right: 0; top:0px; z-index:2;  width: 100%; height:50px; font-size: 10px; background-color:gray;   flex-direction: row;   flex-wrap: nowrap;   justify-content: space-between  ">
+<div id="divCarregar" class="w3-card-4" style="margin:   auto; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px; top:50px;  width: 100%; overflow-x:hidden; height:0px; border:none;  ">
 	<div class="w3-container w3-brown" style="text-align:center; ">
-		<h3>Enter the amount to charge:</h3>
+		<h4>Enter the amount to charge:</h4>
 	</div>
 		<!-https://www.paypal.com/lv/smarthelp/article/how-do-i-add-paypal-checkout-to-my-custom-shopping-cart-ts1200 ->
 	<form autocomplete="off" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -678,18 +664,18 @@ if(@$_GET['action']=="paypal_confirm"){
 		<input type='hidden' name='item_name' value='Deposito para <?php echo $name;?>'>
 		<input type='hidden' name='item_number' value='1'> 
 		<input type='hidden' name='no_shipping' value='1'> 
-		<input type='hidden' name='currency_code' value='EUR'>
+		<input type='hidden' name='currency_code' value='<?php echo $coin;?>'>
 		<input type='hidden' name='notify_url' value='<?php echo $site; ?>/notify.php'>
 		<input type='hidden' name='cancel_return' value='<?php echo $site; ?>/cancel.php'>
 		<input type='hidden' name='return' value='<?php echo $site; ?>/?action=paypal_confirm'>
 		<input type="hidden" name="cmd" value="_xclick">  
-		<label class="w3-text-brown"><b>Valor do depósito:</b></label>
+		<label class="w3-text-brown"><b>deposit amount:</b></label>
 		<div style="display: flex; justify-content: center;  margin: auto; left: 0; right: 0; max-width: 600px; ">      
 			<input id="inputPay"  autocomplete="false" style="float:right; text-align: right; width:100px;" name="amount" onfocus="input_pay_f(); " step="1" value="10" min="10" type="tel" onkeyup="input_pay_f();"> 
-			<label class="w3-text-brown" style="float:right; margin-top:3px;margin-left:10px; "><b>EUR</b></label>
+			<label class="w3-text-brown" style="float:right; margin-top:3px;margin-left:10px; "><b><?php echo $coin;?></b></label>
 		</div>
 		<div style="display: flex; justify-content: center; top:140px; width: 50%; margin: auto; left: 0; right: 0; max-width: 1000px; position: absolute;"> 
-			<input style="width: 80px; " type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but03.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+			<input style="width: 80px; margin-top:-20px;" type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but03.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 		</div>
 	</form>	
 		<div id="div_pay_label" style="margin-top:80px; line-height: 1.0;" >
@@ -697,56 +683,29 @@ if(@$_GET['action']=="paypal_confirm"){
 </div>
 
 
-<div id="div_don_funds" class="w3-card-4" style="opacity:50%; max-width: 1000px;  position: fixed;  margin:   auto; left: 0; right: 0; top:0px; z-index:2;  width: 100%; height:50px; font-size: 10px; background-color:gray;   flex-direction: row;   flex-wrap: nowrap;   justify-content: space-between  ">
+<div id="div_don_funds" class="w3-card-4" style="margin:   auto;padding-top:10px; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px; top:50px;  width: 100%; overflow-x:hidden; height:0px; border:none;  ">
 
 	Donate Funds to poor people, we already are donating 30% of all our production, but with you we can donate more.<br>
 	We give a hand full of 3 strawberries to each children in need everyday.
-	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_donations"><input type="hidden" name="business" value="danielchanfana@gmail.com"><input type="hidden" name="lc" value="PT"><input type="hidden" name="item_name" value="Mission Save"><input type="hidden" name="no_note" value="0"><input type="hidden" name="currency_code" value="EUR"><input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest"><input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!"><img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1"></form>
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_donations"><input type="hidden" name="business" value="danielchanfana@gmail.com"><input type="hidden" name="lc" value="PT"><input type="hidden" name="item_name" value="Mission Save"><input type="hidden" name="no_note" value="0"><input type="hidden" name="currency_code" value="<?php echo $coin;?>"><input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest"><input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!"><img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1"></form>
 
 </div>
 
 
-<script>
-var intervalmovdiv;
-function btentrar(){ 
-
-	// https://myaccount.google.com/u/2/permissions?continue=https%3A%2F%2Fmyaccount.google.com%2Fu%2F2%2Fsecurity
-	google.accounts.id.initialize({
-		client_id: '<?php echo $clientID; ?>',
-		callback: handleCredentialResponse
-	});
-	google.accounts.id.prompt(); 
-divNews.style.top=  290+"px";
-	// intervalmovdiv = setInterval(my_timer_login_descend, 100);
-	intervalmovdiv = setInterval(mytimermov, 100);
-
-	document.documentElement.scrollTop=0;
-}
-function mytimermov() {
-	// console.log(divNews.style.top);
-	var divtop=parseInt(div_body.style.left, 10); 
-	if(divtop>=2280){
-		// clearInterval(intervalmovdiv);
-		console.log(divNews.clientHeight);
-		// return;
-	}
-	div_body.style.left=  divtop+30+"px";
-	// div_maknear.style.top=  divmakn+20+"px";
-	// divNews.style.left=  divtop+10+"px";
-}
-</script>
-
-<div id="div_login" class="w3-card-4" style="opacity:50%; max-width: 1000px;  position: fixed;  margin:   auto; left: 0; right: 0; top:0px; z-index:2;  width: 100%; height:50px; font-size: 10px; background-color:gray;   flex-direction: row;   flex-wrap: nowrap;   justify-content: space-between  ">
+<div id="div_login" class="w3-card-4" style="margin:   auto; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px; top:50px;  width: 100%; overflow-x:hidden; height:0px; border:none;  ">
 	 
 	 <div id="div_login1" style="margin:   auto; left: 0; right: 0; max-width: 600px; position: absolute; float:right; left:0px;   width: 100%; overflow-x:hidden;   border:none;  ">
 	  
+		<!--
 		<a id="btn_login_facebook" style="  display: flex; justify-content: center;  margin: auto; margin-top:20px; left: 0; right: 0; max-width: 200px; " onclick='div_loader.style.display="block";'  class="btn btn-primary" href="<?php echo $site."?action=fblogin"; ?>" >Enter with Facebook</a>
 
 		
 		<div style="   justify-content: center;  margin: auto;  margin-top:20px; left: 0; right: 0; max-width: 200px;">
 			<div class="decorated"><span>or</span></div> 
 		</div>
-
+		-->
+		
+		<br><br><br><br><br>
 
 		<a id="btn_login_google" class="btn btn-primary" style=" display: flex; justify-content: center;  margin: auto;  margin-top:20px; left: 0; right: 0; max-width: 200px; background-color: #8064A2 !important"  onclick='div_loader.style.display="block";'  href="<?php echo $client->createAuthUrl(); ?>" >Enter with Google</a>
 
@@ -763,7 +722,7 @@ function mytimermov() {
 			<input name="email" type="text" class="form-control" placeholder="Endereço de e-mail" aria-label="Username" aria-describedby="basic-addon1">
 		</div>
 		
-		<div class="input-group mb-3" style="max-width: 200px; margin: auto;  margin-top:10px; left: 0; right: 0; z-index: 0; !important;"> 
+		<div class="input-group mb-3" style="max-width: 200px; margin: auto;  margin-top:10px; left: 0; right: 0; z-index: 0; !important; "> 
 			<input name="password" type="text" class="form-control" placeholder="Palavra-passe" aria-label="Username" aria-describedby="basic-addon1">
 		</div>
 		
@@ -799,8 +758,56 @@ function mytimermov() {
 	
 </div>
 
-</div>
 
+<script>
+var div_slider_down=[divCarregar,div_don_funds,div_login];
+function div_swapf(ldiv){
+	div_container.style.top=  280+30+"px";
+	for(var i=0;i<div_slider_down.length;i++){
+		div_slider_down[i].style.height=0+"px";
+		if(div_slider_down[i]==ldiv)
+		ldiv.style.height=220+"px";
+	}
+}
+
+function btentrar(){ 
+	
+	// https://myaccount.google.com/u/2/permissions?continue=https%3A%2F%2Fmyaccount.google.com%2Fu%2F2%2Fsecurity
+	google.accounts.id.initialize({
+      client_id: '<?php echo $clientID; ?>',
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt(); 
+	// divNews.style.top=  280+30+"px";
+	div_swapf(div_login);
+	
+	intervalmovdiv = setInterval(my_timer_login_descend, 100);
+	div_login.style.height=230+"px";
+	div_login1.style.left= 0+"px";
+	div_login2.style.left="1200px";
+	div_login3.style.left="2400px";
+	document.documentElement.scrollTop=0;
+}
+function my_timer_login_descend() {
+	// console.log(divNews.style.top);
+	var divtop=parseInt(divNews.style.top, 10);
+	var divmakn=parseInt(div_maknear.style.top, 10);
+	if(divtop>=280){
+		clearInterval(intervalmovdiv);
+		console.log(divNews.clientHeight);
+		return;
+	}
+	divNews.style.top=  divtop+30+"px";
+	div_maknear.style.top=  divmakn+20+"px";
+	// divNews.style.left=  divtop+10+"px";
+}
+</script>
+
+ 
+
+<script>
+	//  div_body.style.display="block";
+</script>
 
 <div id="div_container" style="box-shadow: 0 0 0.5cm rgba(0,0,0,0.1);  margin: auto; left: 0; right: 0; max-width: 690px; position: absolute; overflow-x:hidden; padding:0; left:0px; top:55px;  width: 100%;   background-color:white;   ">
 
@@ -809,34 +816,65 @@ function mytimermov() {
 <img style="float:right; width:100px; height:auto;"src="images/plantel-de-fresones-albion-520x520.jpeg?"></img>
 
 <script>
-	 div_body.style.display="block";
-	// divNews.classList.add("notranslate");
+    function gtElInit() {
+        var lib = new google.translate.TranslateService();
+        lib.translatePage('en', '<?php echo $langbr;?>', function () {
+        div_loader.style.display="none"; div_all.style.display="block"; 
+    });}
 </script>
-
-  <script type="text/javascript" src="https://www.gstatic.com/_/translate_http/_/js/k=translate_http.tr.en_GB.jUY4_WDT6tY.O/d=1/exm=ajaxproxy,el_conf/ed=1/rs=AN8SPfo-BMNf26XhheE95_VcZtMnJF0ToQ/m=navigationui" data-environment="prod" data-proxy-url="https://promissionsave-com.translate.goog" data-proxy-full-url="https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=pt-PT&amp;_x_tr_pto=wapp" data-source-url="https://promissionsave.com/index1.html" data-source-language="en" data-target-language="<?php echo $langbr;?>" data-display-language="pt-PT" data-detected-source-language="" data-is-source-untranslated="false" data-source-untranslated-url="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=pt-PT&amp;client=webapp&amp;u=https://promissionsave.com/index1.html&amp;anno=2" data-use-in-place-translation="true" data-client="tr"></script>
-  <script>function gtElInit() {var lib = new google.translate.TranslateService();lib.translatePage('', '<?php echo $langbr;?>', function () {});}</script>
-  <?php if($langbr!="en") 
-  echo '<script src="https://translate.google.com/translate_a/element.js?cb=gtElInit&amp;hl=pt-PT&amp;client=wt" type="text/javascript"></script>'; ?>
-<style>
-#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
-.goog-text-highlight { background: none !important; box-shadow: none !important;}
-</style>
-
+<?php if($langbr!="en") 
+     echo '<script src="https://translate.google.com/translate_a/element.js?cb=gtElInit&amp;hl=pt-PT&amp;client=wt" type="text/javascript"></script>'; 
+?>
 
 
 <?php 
 
-// $ff=file_get_contents("https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-PT&_x_tr_pto=wapp");
+// $ff=file_get_contents("https://promition-com.translate.goog/index1.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-PT&_x_tr_pto=wapp");
 // echo $ff;
 // file_put_contents("ff.txt",$ff);
-// echo parcegoogledoc("Vivisionhome.html",array(
+// echo parcegoogledoc("Promitionhome.html",array(
 // echo parsegooglehttp("https://docs.google.com/document/d/e/2PACX-1vThTN29m3TTNojOyGrgPVYfV9Gdx56KklDlD_t-l8MlU31oGsv8vMZkbstOkURjGT4FNTFSXIiW2UPH/pub",array(
-// echo parsegooglehttp("https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=pt&_x_tr_tl=en&_x_tr_hl=pt-PT&_x_tr_pto=wapp",array(
+// echo parsegooglehttp("https://promition-com.translate.goog/index1.html?_x_tr_sl=pt&_x_tr_tl=en&_x_tr_hl=pt-PT&_x_tr_pto=wapp",array(
 
 echo parsegooglehttp("https://docs-google-com.translate.goog/document/d/e/2PACX-1vThTN29m3TTNojOyGrgPVYfV9Gdx56KklDlD_t-l8MlU31oGsv8vMZkbstOkURjGT4FNTFSXIiW2UPH/pub?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-PT&_x_tr_pto=wapp",array(
 '"><img alt="" src="images/image1.png"' => ' float:left;"><img alt="" src="images/image1.png"', 
 ),"",1);
 ?>
+
+
+<style>
+	a {
+	font-weight: bold;
+	text-decoration: underline;
+	}
+</style>
+<a href="https://promition.org/Greenhouses-with-robots.html" style="text-align:center;">For additional information on the topic of utilizing robots in greenhouses, I recommend further reading. To access this material, please click here.</a>
+
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7469281181086429"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-7469281181086429"
+     data-ad-slot="4392628812"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script> -->
+
 </div>
 <!--<iframe title='People who died from hunger' src='https://www.theworldcounts.com/embed/challenges/2?background_color=white&color=black&font_family=%22Helvetica+Neue%22%2C+Arial%2C+sans-serif&font_size=14' style='border: none' height='100' width='300'></iframe>-->
 <style>
@@ -876,10 +914,9 @@ p{line-height: 1.1;}
 // echo parcegoogledoc("wfp/WFP.html",array(
 // echo parsegooglehttp("index1.html",array(
 echo parsegooglehttp("https://docs.google.com/document/d/e/2PACX-1vSAox75sL1yTcN4gbYaycpQmS5McJ63H0wgvMc-c5I8qo_HSk15tUJrkLwM2FaLG3Yq6Wa4vHWKqDxz/pub",array(
+'width: 409.48px; height: 221.98px;' => 'width: 100% !important; height: auto !important; ', 
 'width: 657.50px; height: 374.62px;' => ' width: 100% !important; height: auto !important;',
 'width: 660.50px; height: 469.59px;' => ' width: 100% !important; height: auto !important;',
-'"><img alt="img1"' => ' width: 100% !important; height: auto !important;"><img alt="img1"',
-'"><img alt="img2"' => ' width: 100% !important; height: auto !important;"><img alt="img2"',
 '"><img alt="estrutura"' => ' float:left;"><img alt="estrutura"',
 '"><img alt="" src="images/image3.png"' => ' float:left;!important;"><img alt="" src="$addpathimages/image3.png"',
 '"><img alt="" src="images/image2.png" style="' => ' width: 100% !important; height: auto !important;"><img alt="" src="$addpathimages/image2.png" style="width: 100% !important; height: auto !important; ',
@@ -898,6 +935,7 @@ echo parsegooglehttp("https://docs.google.com/document/d/e/2PACX-1vSAox75sL1yTcN
 		$p=explode(".",$p)[0];
 		// echo "->".$p;
 		$f=$p."/";
+		// echo $f;
 		// include( $p."/index.php?f=".$p."/");
 		if(file_exists($p."/index.php"))include( $p."/index.php");
 		echo "<script>divbody.style.all='unset'; div_maknear.style.display='none'; divNews.style.display='none'; divNews1.style.display='none';</script>";
@@ -932,20 +970,21 @@ var intervalmovdiv;
 var balance=<?php echo $balance; ?>;
 
 function div_don_fundsf(tog=1){ 
-	history.pushState({}, null, "https://promissionsave.com/?s=donate");
+	history.pushState({}, null, "https://promition.org/?s=donate");
 	if(tog)menuf(div_menu_x);
 	document.documentElement.scrollTop=0;
 	intervalmovdiv = setInterval(myTimer, 10);
 	// console.log("w");
-	div_don_funds.style.height=220+"px";
+	div_swapf(div_don_funds);
+	// div_don_funds.style.height=220+"px";
 }
 
 function btcarregarf(){
-	// divNews.classList.add("notranslate");
-	intervalmovdiv = setInterval(myTimer, 10);
+	// intervalmovdiv = setInterval(myTimer, 10);
 	// console.log("w");
-	divCarregar.style.height=220+"px";
+	// divCarregar.style.height=220+"px";
 	// divNews.style.top= top1+333+"px";
+	div_swapf(divCarregar);
 	inputPay.type = 'tel';
 	inputPay.setSelectionRange(2, 2);
 	inputPay.type = 'Number';
@@ -971,19 +1010,7 @@ function paypal_confirm(){
 	console.log("da");
 }
 
-function my_timer_login_descend() {
-	// console.log(divNews.style.top);
-	var divtop=parseInt(divNews.style.top, 10);
-	var divmakn=parseInt(div_maknear.style.top, 10);
-	if(divtop>=280){
-		clearInterval(intervalmovdiv);
-		console.log(divNews.clientHeight);
-		return;
-	}
-	divNews.style.top=  divtop+30+"px";
-	div_maknear.style.top=  divmakn+20+"px";
-	// divNews.style.left=  divtop+10+"px";
-}
+
 function handleCredentialResponse(response){
 	// console.log(response);
 	var credential=response["credential"];
@@ -992,11 +1019,36 @@ function handleCredentialResponse(response){
 }
 
 
- 
+function move_div_login(){
+	console.log(div_login1.style.left);
+	div_login2.style.left="1200px";
+	div_login3.style.left="2400px";
+	intervalmovdiv = setInterval( function() { timer_move_div_login(2); }, 10);
+	
+}
+function timer_move_div_login(topos){ 
+	var divp=parseInt(div_login1.style.left, 10);
+	var divp2=parseInt(div_login2.style.left, 10);
+	var divp3=parseInt(div_login3.style.left, 10);
+	if( (topos==2 && divp2<=0) || (topos==3 && divp3<=0)  ){
+		clearInterval(intervalmovdiv); 
+		return;
+	}
+	div_login1.style.left=  divp-20+"px";
+	div_login2.style.left= divp2-20+"px";
+	div_login3.style.left= divp3-20+"px";
+	// console.log(div_login1.style.left);
+}
+function move_div_login_to3(){
+	console.log(div_login1.style.left);
+	// div_login1.style.left="-1000px";
+	intervalmovdiv = setInterval( function() { timer_move_div_login(3); }, 10);
+	
+}
  
 
 function input_pay_f(){
-	div_pay_label.innerHTML="Faça já o check out para poder levantar "+(balance+ parseInt(inputPay.value))+" EUR em batatas doces assadas nas futuras máquinas." ;
+	div_pay_label.innerHTML="Check out now to claim "+(balance+ parseInt(inputPay.value))+" <?php echo $coin;?> worth of strawberries and roasted sweet potatoes in the future machines." ;
 	
 }
  
@@ -1077,9 +1129,9 @@ window.onscroll =divNewsscrollf;
 // window.onscroll = function () {
    // console.log(document.documentElement.scrollTop || document.body.scrollTop);
  // };
-window.onload=function(){
-	div_loader.style.display="none";
-}
+// window.onload=function(){
+	// div_loader.style.display="none";
+// }
 </script>
   
 
@@ -1133,7 +1185,7 @@ console.log(gd);
 
 <script> 
 var tab_mak_sorted=[];
-function get_mak(lat,longi){
+function get_mak(lat,longi){ 
 	var loc1 = new google.maps.LatLng(lat,longi);
 	// var loc1 = new google.maps.LatLng(39.331058,-8.9361147);
 	console.log(lat,longi);
@@ -1152,7 +1204,8 @@ function get_mak(lat,longi){
 	}
 	console.log(tab_mak_sorted);
 	
-	for (var i = 0; i < tab_mak.length; i++){
+	// for (var i = 0; i < tab_mak.length; i++){
+	for (var i = 0; i < 8; i++){
 		var iDiv = document.createElement('div');
 		var tms=tab_mak_sorted[i];
 		iDiv.id = 'div_mak_'+i; 
@@ -1271,7 +1324,7 @@ function geoFindMe1() {
 	 function error(err) {
 		// button_near.style.display="none";
 		console.warn('ERROR(' + err.code + '): ' + err.message);
-		Swal.fire({title:"Please allow geolocation on your browser and try again ",icon:'none',  showConfirmButton: false}); 
+		Swal.fire({title:"Please allow geolocation on your browser and try again ",icon:'warning',  showConfirmButton: false}); 
 		setTimeout(() =>{Swal.close();},2400);
 		div_loader.style.display="none";
 		// output.innerHTML ='ERROR(' + err.code + '): ' + err.message;
@@ -1301,17 +1354,30 @@ console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 	};
 </script>
 
-
+</div>
 </body>
 
 <script>
+    div_loader.style.display="none"; 
+    div_all.style.display="block";
+    // div_don_fundsf(0);
 <?php
 	$s=@$_GET["s"]; 
 	if($s=="donate")echo 'window.onload=function(){div_don_fundsf(0); div_loader.style.display="none";}';
+	if($s=="login")echo 'window.onload=function(){btentrar(); div_loader.style.display="none";}';
 
 ?>
-// div_loader.style.display="none";
+// window.onload=function(){move_div_login(0);};// div_loader.style.display="none";
 </script>
 
-
+<style>
+	#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+	.goog-text-highlight { background: none !important; box-shadow: none !important;}
+	.goog-te-glossary-tooltip {
+	display: none !important;
+	}
+	#goog-gt-{
+	display: none !important;
+	}
+</style>
 </html>

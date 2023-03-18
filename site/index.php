@@ -1,39 +1,24 @@
 <?php //Comments
 	
-// https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-8GA30407VK1630742
+	// https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-8GA30407VK1630742
 
-$webview=0;
-//For iOS
-if ((strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false)) {
-	$webview=1;
-} 
-//For Android
-// echo $_SERVER['HTTP_X_REQUESTED_WITH'];
-if ($_SERVER['HTTP_X_REQUESTED_WITH'] != "") {
-	$webview=1;
-} 
-
-
-
-setcookie('googtrans', '/en/pt');
+    $webview=0;
+    //For iOS
+    if ((strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false)) {
+        $webview=1;
+    } 
+    //For Android
+    // echo $_SERVER['HTTP_X_REQUESTED_WITH'];
+    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != "") {
+        $webview=1;
+    } 
+ 
 ?>
 
-<?php 
-	/*
-	$hash = '<script>document.writeln(window.location.hash.replace("#", ""));</script>';
-echo $hash;
-	//nao funciona
-	echo "rr".strpos($hash,"script");
-	if( strpos($hash,"cb")!== false ){
-	echo "fo";
-	// echo 'window.fbAsyncInit=fbentrar;';
-	}
-	return;
-	*/
-?>
+ 
 
 <?php //Global vars
-/* 	// $site="vivision.org";
+	/* 	// $site="promition.org";
 	// $site="www.".$site;
 	// $site="https://".$site;
 	$site="https://".$_SERVER['SERVER_NAME'];
@@ -66,8 +51,8 @@ echo $hash;
 
 <?php //utils
 function setCookieToken($token){ 
-	echo '<script>setCookie("vivisiont","'.$token.'",365);</script>';
-	$_COOKIE["vivisiont"]=$token;
+	echo '<script>setCookie("promitiont","'.$token.'",365);</script>';
+	$_COOKIE["promitiont"]=$token;
 }
 
 // https://stackoverflow.com/questions/22143250/xmlhttprequest-cross-domain
@@ -92,7 +77,7 @@ if(@$_POST["action"]=="test")
 
 <?php //check if have token logged then autolog
 	// create_token();
-	// if(@$_COOKIE["vivisionl2"]!=""){
+	// if(@$_COOKIE["promitionl2"]!=""){
 	// echo "on";
 	
 // }
@@ -102,7 +87,7 @@ if(@$_POST["action"]=="test")
 
 <?php //reverse geo
  
-
+ 
 
 function reverse_geo($lat,$long){
 	$curl = curl_init();
@@ -149,14 +134,15 @@ function reverse_geo($lat,$long){
 <meta charset="UTF-8">
  
 <meta property="og:type"               content="article" />
-<meta property="og:title"              content="Promissionsave" />
+<meta property="og:title"              content="Promition" />
 <meta property="og:description"        content="By buying strawberries and roasted sweet potatoes here, you are saving people from hunger." />
-<meta property="og:image"              content="https://promissionsave.com/images/plantel-de-fresones-albion-520x520.jpeg" />
+<meta property="og:image"              content="https://promition.org/images/plantel-de-fresones-albion-520x520.jpeg" />
 
 
-<title class='notranslate'>Promissionsave alpha</title>
+<title class='notranslate'>Promition alpha</title>
+
 <style>
-.loader {
+	.loader {
     width: 48px;
     height: 48px;
     border: 5px solid blue;
@@ -184,7 +170,7 @@ function reverse_geo($lat,$long){
 </script>
 
 <?php  
-	/*xhttp.php cópia para meeting.vivision.org de vivision.org*/
+	/*xhttp.php cópia para meeting.promition.org de promition.org*/
 	// $location="./";
 	$location="../../htdocs/"; 
 	$site="https://".$_SERVER['SERVER_NAME'];
@@ -543,28 +529,28 @@ function adjust(){
  
 } 
 adjust(); 
-/*
-var xhttp = new XMLHttpRequest(); 
-// <?php compilefilehtmlcssinline("calculator.html"); ?>
-// xhttp.open("POST", "cis_calculator.html", true);
-xhttp.open("POST", "calculator.html", true);
-xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
-xhttp.onreadystatechange = function () {   
-	const scriptEl = document.createRange().createContextualFragment(xhttp.responseText);
-	divr.innerHTML="";
-	divr.appendChild(scriptEl);
-	// divr.innerHTML=xhttp.responseText;
-	// var scripts = divr.getElementsByTagName("script");
-	// for (var i = 0; i < scripts.length; i++) {
-		// eval(scripts[i].innerText);
-	// }
-}; 
-xhttp.send("");
-*/
+// /*
+// var xhttp = new XMLHttpRequest(); 
+// // <?php //compilefilehtmlcssinline("calculator.html"); ?>
+// // xhttp.open("POST", "cis_calculator.html", true);
+// xhttp.open("POST", "calculator.html", true);
+// xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
+// xhttp.onreadystatechange = function () {   
+// 	const scriptEl = document.createRange().createContextualFragment(xhttp.responseText);
+// 	divr.innerHTML="";
+// 	divr.appendChild(scriptEl);
+// 	// divr.innerHTML=xhttp.responseText;
+// 	// var scripts = divr.getElementsByTagName("script");
+// 	// for (var i = 0; i < scripts.length; i++) {
+// 		// eval(scripts[i].innerText);
+// 	// }
+// }; 
+// xhttp.send("");
+// */
 window.onresize = function(){adjust();};
 	
 </script>
-	
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7469281181086429" crossorigin="anonymous"></script>
 	
 	<div style="margin: auto;"> 
 	
@@ -587,16 +573,16 @@ window.onresize = function(){adjust();};
 		<script> 
 		function webview(){ 
 			if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)  && <?php echo $webview;?>) {
-				window.location="intent:googlechrome://navigate?url=promissionsave.com?s=login#Intent;end";	
+				window.location="intent:googlechrome://navigate?url=promition.org?s=login#Intent;end";	
 			}  
 		}
 		</script>
-		<button id="buttonEntrar" class="buttonpp notranslate" style="float:right;  " onclick='webview(); btentrar();'><?php echo d('login')?></button>
+		<!-- <button id="buttonEntrar" class="buttonpp notranslate" style="float:right;  " onclick='webview(); btentrar();'><?php //echo d('login')?></button> -->
 		
-		<button id="buttonCarregar" class="buttonpp" style="max-width:110px; float:right; margin-top:0px;  display:none; color:#000; " onclick='webview(); btcarregarf();'><?php echo d('buy')?></button>
+		<!-- <button id="buttonCarregar" class="buttonpp" style="max-width:110px; float:right; margin-top:0px;  display:none; color:#000; " onclick='webview(); btcarregarf();'><?php //echo d('buy')?></button> -->
 		
-		<div id="div_balance" style="border-left:solid; border-right:solid; border-top:solid; float:right; margin-right:10px; padding: 5px 10px; "><?php echo d("Balance").":<br>".$balance.$coin; ?>
-		</div>
+		<!-- <div id="div_balance" style="border-left:solid; border-right:solid; border-top:solid; float:right; margin-right:10px; padding: 5px 10px; "><?php //echo d("Balance").":<br>".$balance.$coin; ?>
+		</div> -->
 	</div>
 	
 	
@@ -630,9 +616,9 @@ window.onresize = function(){adjust();};
 				Donate funds to poor people
 			</a>
 		<br>	
-		<a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:13px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;" id="btn_donate_funds" onClick="">
+		<!-- <a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:13px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;" id="btn_donate_funds" onClick="">
 				Transfer funds between our accounts - Planned
-		</a>
+		</a> -->
 		<br>	
 		
 		<!--<a href="biography.html" class="buttonpp" style="margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="">
@@ -640,7 +626,7 @@ window.onresize = function(){adjust();};
 		</a>
 		<br>-->	
 		
-		<a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="document.cookie = 'vivision' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'; location.reload();">
+		<a href="" class="buttonpp" style="padding:0px 10px; margin:auto; font-size:12px;  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; color:white;"id="btn_donate_funds" onClick="document.cookie = 'promition' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'; location.reload();">
 				Logout
 		</a>
 		<br>	
@@ -740,7 +726,7 @@ if(@$_GET['action']=="paypal_confirm"){
 			<input name="email" type="text" class="form-control" placeholder="Endereço de e-mail" aria-label="Username" aria-describedby="basic-addon1">
 		</div>
 		
-		<div class="input-group mb-3" style="max-width: 200px; margin: auto;  margin-top:10px; left: 0; right: 0; z-index: 0; !important;"> 
+		<div class="input-group mb-3" style="max-width: 200px; margin: auto;  margin-top:10px; left: 0; right: 0; z-index: 0; !important; "> 
 			<input name="password" type="text" class="form-control" placeholder="Palavra-passe" aria-label="Username" aria-describedby="basic-addon1">
 		</div>
 		
@@ -824,7 +810,7 @@ function my_timer_login_descend() {
  
 
 <script>
-	 div_body.style.display="block";
+	//  div_body.style.display="block";
 </script>
 
 <div id="div_container" style="box-shadow: 0 0 0.5cm rgba(0,0,0,0.1);  margin: auto; left: 0; right: 0; max-width: 690px; position: absolute; overflow-x:hidden; padding:0; left:0px; top:55px;  width: 100%;   background-color:white;   ">
@@ -833,30 +819,26 @@ function my_timer_login_descend() {
 <!--img style="float:right; width:100px; height:auto;"src="sweet_potatoes_oven_baked-1125x1500.webp"></img>-->
 <img style="float:right; width:100px; height:auto;"src="images/plantel-de-fresones-albion-520x520.jpeg?"></img>
 
-
-  <script type="text/javascript" src="https://www.gstatic.com/_/translate_http/_/js/k=translate_http.tr.en_GB.jUY4_WDT6tY.O/d=1/exm=ajaxproxy,el_conf/ed=1/rs=AN8SPfo-BMNf26XhheE95_VcZtMnJF0ToQ/m=navigationui" data-environment="prod" data-proxy-url="https://promissionsave-com.translate.goog" data-proxy-full-url="https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=pt-PT&amp;_x_tr_pto=wapp" data-source-url="https://promissionsave.com/index1.html" data-source-language="en" data-target-language="<?php echo $langbr;?>" data-display-language="pt-PT" data-detected-source-language="" data-is-source-untranslated="false" data-source-untranslated-url="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=pt-PT&amp;client=webapp&amp;u=https://promissionsave.com/index1.html&amp;anno=2" data-use-in-place-translation="true" data-client="tr"></script>
-  <script>function gtElInit() {var lib = new google.translate.TranslateService();lib.translatePage('en', '<?php echo $langbr;?>', function () {
-  // setTimeout(function() {div_loader.style.display="none"; div_all.style.display="block";},3000);
-  div_loader.style.display="none"; div_all.style.display="block";
-  // lib=0;
-  });}</script>
-  <?php if($langbr!="en") 
-  echo '<script src="https://translate.google.com/translate_a/element.js?cb=gtElInit&amp;hl=pt-PT&amp;client=wt" type="text/javascript"></script>'; ?>
-<style>
-#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
-.goog-text-highlight { background: none !important; box-shadow: none !important;}
-</style>
-
+<script>
+    function gtElInit() {
+        var lib = new google.translate.TranslateService();
+        lib.translatePage('en', '<?php echo $langbr;?>', function () {
+        div_loader.style.display="none"; div_all.style.display="block"; 
+    });}
+</script>
+<?php if($langbr!="en") 
+     echo '<script src="https://translate.google.com/translate_a/element.js?cb=gtElInit&amp;hl=pt-PT&amp;client=wt" type="text/javascript"></script>'; 
+?>
 
 
 <?php 
 
-// $ff=file_get_contents("https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-PT&_x_tr_pto=wapp");
+// $ff=file_get_contents("https://promition-com.translate.goog/index1.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-PT&_x_tr_pto=wapp");
 // echo $ff;
 // file_put_contents("ff.txt",$ff);
-// echo parcegoogledoc("Vivisionhome.html",array(
+// echo parcegoogledoc("Promitionhome.html",array(
 // echo parsegooglehttp("https://docs.google.com/document/d/e/2PACX-1vThTN29m3TTNojOyGrgPVYfV9Gdx56KklDlD_t-l8MlU31oGsv8vMZkbstOkURjGT4FNTFSXIiW2UPH/pub",array(
-// echo parsegooglehttp("https://promissionsave-com.translate.goog/index1.html?_x_tr_sl=pt&_x_tr_tl=en&_x_tr_hl=pt-PT&_x_tr_pto=wapp",array(
+// echo parsegooglehttp("https://promition-com.translate.goog/index1.html?_x_tr_sl=pt&_x_tr_tl=en&_x_tr_hl=pt-PT&_x_tr_pto=wapp",array(
 
 echo parsegooglehttp("https://docs-google-com.translate.goog/document/d/e/2PACX-1vThTN29m3TTNojOyGrgPVYfV9Gdx56KklDlD_t-l8MlU31oGsv8vMZkbstOkURjGT4FNTFSXIiW2UPH/pub?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-PT&_x_tr_pto=wapp",array(
 '"><img alt="" src="images/image1.png"' => ' float:left;"><img alt="" src="images/image1.png"', 
@@ -956,7 +938,7 @@ var intervalmovdiv;
 var balance=<?php echo $balance; ?>;
 
 function div_don_fundsf(tog=1){ 
-	history.pushState({}, null, "https://promissionsave.com/?s=donate");
+	history.pushState({}, null, "https://promition.org/?s=donate");
 	if(tog)menuf(div_menu_x);
 	document.documentElement.scrollTop=0;
 	intervalmovdiv = setInterval(myTimer, 10);
@@ -1115,9 +1097,9 @@ window.onscroll =divNewsscrollf;
 // window.onscroll = function () {
    // console.log(document.documentElement.scrollTop || document.body.scrollTop);
  // };
-window.onload=function(){
+// window.onload=function(){
 	// div_loader.style.display="none";
-}
+// }
 </script>
   
 
@@ -1344,6 +1326,9 @@ console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 </body>
 
 <script>
+    div_loader.style.display="none"; 
+    div_all.style.display="block";
+    // div_don_fundsf(0);
 <?php
 	$s=@$_GET["s"]; 
 	if($s=="donate")echo 'window.onload=function(){div_don_fundsf(0); div_loader.style.display="none";}';
@@ -1353,5 +1338,14 @@ console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 // window.onload=function(){move_div_login(0);};// div_loader.style.display="none";
 </script>
 
-
+<style>
+	#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+	.goog-text-highlight { background: none !important; box-shadow: none !important;}
+	.goog-te-glossary-tooltip {
+	display: none !important;
+	}
+	#goog-gt-{
+	display: none !important;
+	}
+</style>
 </html>

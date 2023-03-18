@@ -10,7 +10,7 @@
 #include <errno.h>
 #include <malloc.h>
 
-#define GAMEPAD_EXPORT 1
+#define GAMEPAD_EXPORT 0 
 #include "gamepad.h"
 
 /* Platform-specific includes */
@@ -19,7 +19,7 @@
 #	undef UNICODE
 #	include "windows.h"
 #	include "xinput.h"
-// #	pragma comment(lib, "xinput.lib")
+#	pragma comment(lib, "xinput.lib")
 #elif defined(__linux__)
 #	include <linux/joystick.h>
 #	include <stdio.h>

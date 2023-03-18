@@ -11,23 +11,22 @@
 #if defined(__cplusplus)
 extern "C" {
 #endif
-
-#define GAMEPAD_API
-// #if defined(GAMEPAD_STATIC_LIB)
-// #	define GAMEPAD_API
-// #else
-// #	if defined(_WIN32)
-// #		if defined(GAMEPAD_EXPORT)
-// #			define GAMEPAD_API __declspec(dllexport)
-// #		else
-// #			define GAMEPAD_API __declspec(dllimport)
-// #		endif
-// #	elif defined(__GNUC__) && defined(GAMEPAD_EXPORT)
-// #		define GAMEPAD_API __attribute__((visibility("default")))
-// #	else
-// #		define GAMEPAD_API extern
-// #	endif
-// #endif
+#define GAMEPAD_STATIC_LIB 1
+#if defined(GAMEPAD_STATIC_LIB)
+#	define GAMEPAD_API
+#else
+#	if defined(_WIN32)
+#		if defined(GAMEPAD_EXPORT)
+#			define GAMEPAD_API __declspec(dllexport)
+#		else
+#			define GAMEPAD_API __declspec(dllimport)
+#		endif
+#	elif defined(__GNUC__) && defined(GAMEPAD_EXPORT)
+#		define GAMEPAD_API __attribute__((visibility("default")))
+#	else
+#		define GAMEPAD_API extern
+#	endif
+#endif
 
 /**
  * Enumeration of the possible devices.
