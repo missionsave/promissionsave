@@ -52,7 +52,21 @@ function parcegoogledoc($filename,$jsonreplace="",$addpath=""){
 	return $your_text_variable; 
 }
 function parsegooglehttp($http,$jsonreplace="",$addpath="",$first=0){
-	$your_text_variable=file_get_contents ($http);
+	global $res;
+	$email_autorized=($res[0]['email']=='superbem@gmail.com');
+
+	$fn="cache".md5($http).".txt";
+
+	// clog(fn);
+	if(!$email_autorized){
+		$your_text_variable=file_get_contents ($fn);
+	} 
+	else
+	{
+		$your_text_variable=file_get_contents ($http);
+		file_put_contents($fn, $your_text_variable);
+	}
+
 	//hack doc
 	$your_text_variable=str_replace('Vivision.org','<span class="notranslate"> Vivision.org </span>',$your_text_variable);
 	$your_text_variable=str_replace('Vivision ','<span class="notranslate">Vivision </span>',$your_text_variable);
@@ -121,7 +135,6 @@ function parsegooglehttp($http,$jsonreplace="",$addpath="",$first=0){
 	// }
 	// // Implode the modified $your_text_variable with 'width:100%; height:auto;'
 	// $your_text_variable = implode('100%; height:auto;"><img', $your_text_variable);
-
 
 
 

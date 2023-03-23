@@ -145,11 +145,23 @@ function reverse_geo($lat,$long){
 	require_once( "token.php");	
 	require_once( "dict.php");	
 	require_once($location."vendor/autoload.php");	
-	require_once($location."google_login.php");	
-	require_once($location."facebook_login.php");
+	require_once("google_login.php");	
+	require_once("facebook_login.php");
 	require_once("parser.php");
+	
+	clog($res[0]['email']);
+	clog($token);
 ?>
-
+<?php //utils
+function clog($output, $with_script_tags = true) {
+    $js_code = 'console.log("php",' . json_encode($output, JSON_HEX_TAG) . 
+');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
+?>
 <!DOCTYPE html>
 <html  lang="<?php echo $langbr;?>" >
 	<!--<meta name="google" value="notranslate">-->
@@ -169,7 +181,7 @@ function reverse_geo($lat,$long){
 <meta property="og:image"              content="https://promition.org/images/plantel-de-fresones-albion-520x520.jpeg" />
 
 
-<title class='notranslate'>Promition alpha</title>
+<title class='notranslate'>Promition</title>
 
 <style>
 	.loader {
@@ -197,6 +209,9 @@ function reverse_geo($lat,$long){
 <script>
 	div_loader.style.left=window.innerWidth/2-24+"px";
 	div_loader.style.display="block";
+
+	var email="<?php echo $res[0]['email'];?>";
+	console.log("email",email);
 </script>
 
 
@@ -646,8 +661,8 @@ if(@$_GET['action']=="paypal_confirm"){
 }
 ?>
 <?php //se logged
-	if($email!="email") 
-		echo '<script>document.getElementById("buttonEntrar").style.display="none";document.getElementById("buttonCarregar").style.display="block";</script>';
+	// if($email!="email") 
+	// 	echo '<script>document.getElementById("buttonEntrar").style.display="none";document.getElementById("buttonCarregar").style.display="block";</script>';
  
 ?>
 
@@ -889,7 +904,7 @@ p{line-height: 1.1;}
 	</div>	
 	<div id="cong_ml2" class="ml2"></div>
 	<div id="cong_ml3" class="ml3"></div>
-	<span id="span_maknear" style="color:green; display:none; "><b><?php echo d('There is a plan to put a machine selling strawberries and roasted sweet potatoes near you')?>:</b></span>
+	<span id="span_maknear" style="color:green; display:none; "><b><?php echo d('There is a plan to put a machine giving strawberries and roasted sweet potatoes near you')?>:</b></span>
 </div>
 
 

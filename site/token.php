@@ -46,7 +46,8 @@ function create_token($facebook,$google,$pic){
 		$id=$res[0]['id'];
 		$token=$res[0]['token'];
 	}
-	setCookie("promition",$token,time() + (100 * 365 * 24 * 60 * 60));
+	// setcookie("mycookie", "value", time()+3600, "/", ".example.com", true, true);
+	setCookie("promition",$token,time() + (100 * 365 * 24 * 60 * 60), "/", ".promition.org", true, true);
 	$_COOKIE["promition"]=$token; //to have access without refresh
 	// goto load;
 }

@@ -132,8 +132,9 @@ var tableobj;
 var head;
 var xhttp_name="index.php";
 
-// var email="<?php echo $res[0]['email'];?>";
-// var email_autorized=email=="superbem@gmail.com";
+var email="<?php echo $res[0]['email'];?>";
+console.log(email);
+
 
 var email_autorized="<?php echo ($res[0]['email']=='superbem@gmail.com');?>";
 
