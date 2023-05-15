@@ -840,7 +840,9 @@ function my_timer_login_descend() {
 <?php if($langbr!="en") 
      echo '<script src="https://translate.google.com/translate_a/element.js?cb=gtElInit&amp;hl=pt-PT&amp;client=wt" type="text/javascript"></script>'; 
 ?>
-
+ <style>.translate {
+  pointer-events: none;
+}</style>
 
 <?php 
 
@@ -904,7 +906,11 @@ echo parsegooglehttp("https://docs-google-com.translate.goog/document/d/e/2PACX-
 p{line-height: 1.1;}
 </style>
 
-<style>#google_translate_element,.skiptranslate{display:none;}body{top:0!important;}</style>
+<!-- <style>#google_translate_element,.skiptranslate{display:none; pointer-events:none!important;
+background: none !important; box-shadow: none !important;
+
+}
+body{top:0!important;}</style> -->
 
 <div id="div_maknear" style="  margin: auto; max-height:200px; overflow:hidden;">  
 	<div id="button_near" class="center_flex" style="  padding-left: 20px; padding-right: 20px; ">
@@ -1405,12 +1411,17 @@ console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 
 <style>
 	#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+html { background: none !important; box-shadow: none !important;}
+	#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
 	.goog-text-highlight { background: none !important; box-shadow: none !important;}
+	#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+	/* .nsm7Bb-HzV7m-LgbsSe:hover { background: none !important; box-shadow: none !important;} */
 	.goog-te-glossary-tooltip {
 	display: none !important;
 	}
-	#goog-gt-{
-	display: none !important;
-	}
+	/* #goog-gt-{
+	display: none !important;background: none !important; box-shadow: none !important;
+	} */
+	/* html{pointer-events: none; user-select: text;} */
 </style>
 </html>
