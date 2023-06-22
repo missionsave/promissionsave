@@ -9,4 +9,4 @@ Libraies used in robot driver:
 	sudo apt install libopenscenegraph-dev
 	sudo apt install libopencv-dev
 	sudo apt install libfann-dev
-	sudo apt install libfltk-dev
+	sudo apt install libfltk1.3-dev
