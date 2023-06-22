@@ -1285,7 +1285,7 @@ void geraeixos(Group* group){
 	
 	// vec3* offset=new vec3(0,0,0);
 	//robot offset
-	vec3* offset=new vec3(610-110,272,-300);
+	vec3* offset=new vec3(610-110,272+70,-300);
 	
 	
 	carril=new osgdr(group);
@@ -1298,20 +1298,20 @@ void geraeixos(Group* group){
 	idx=0;
 	ve.resize(idx+1);
 	ve[idx]=new osgdr(group); 
-	ve[idx]->nodesstr.push_back("stl/robot_corpo.stl");
-	ve[idx]->nodesstr.push_back("stl/robot_balde.stl");
-	ve[idx]->nodesstr.push_back("stl/robot_servospt70.stl"); 
+	ve[idx]->nodesstr.push_back("stl/robot morango_corpo.stl");
+	ve[idx]->nodesstr.push_back("stl/robot morango_balde.stl");
+	ve[idx]->nodesstr.push_back("stl/robot morango_servospt70.stl"); 
 	ve[idx]->axis=vec3(0,1,0);
 	ve[idx]->anglemax=230;
 	ve[idx]->anglemin=-90;
 	ve[idx]->offset=offset;
-	ve[idx]->newdr(vec3(110,250,-20),vec3(110,250,200));
+	ve[idx]->newdr(vec3(110,250-70,-20),vec3(110,250-70,200));
 		
 	idx=1;
 	ve.resize(idx+1);
 	ve[idx]=new osgdr(group); 
-	ve[idx]->nodesstr.push_back("stl/robot_servospt70_1.stl");
-	ve[idx]->nodesstr.push_back("stl/robot_armj1.stl");
+	ve[idx]->nodesstr.push_back("stl/robot morango_servospt70_1.stl");
+	ve[idx]->nodesstr.push_back("stl/robot morango_armj1.stl");
 	ve[idx]->axis=vec3(1,0,0);
 	ve[idx]->anglemin=-20;
 	ve[idx]->anglemax=200;
@@ -1322,7 +1322,7 @@ void geraeixos(Group* group){
 	// idx=2;
 	// ve.resize(idx+1);
 	// ve[idx]=new osgdr(group); 
-	// ve[idx]->nodesstr.push_back("stl/robot_armj1_1.stl"); 
+	// ve[idx]->nodesstr.push_back("stl/robot morango_armj1_1.stl"); 
 	// ve[idx]->axis=vec3(0,0,1); 
 	// ve[idx]->anglemax=160;
 	// ve[idx]->anglemin=-160;
@@ -1332,8 +1332,8 @@ void geraeixos(Group* group){
 	idx=2;
 	ve.resize(idx+1);
 	ve[idx]=new osgdr(group); 
-	ve[idx]->nodesstr.push_back("stl/robot_armj2.stl"); 
-	ve[idx]->nodesstr.push_back("stl/robot_servospt70_2.stl"); 
+	ve[idx]->nodesstr.push_back("stl/robot morango_armj2.stl"); 
+	ve[idx]->nodesstr.push_back("stl/robot morango_servospt70_2.stl"); 
 	ve[idx]->axis=vec3(0,1,0); 
 	ve[idx]->anglemin=0;
 	ve[idx]->anglemax=90;
@@ -1343,7 +1343,7 @@ void geraeixos(Group* group){
 	idx=3;
 	ve.resize(idx+1);
 	ve[idx]=new osgdr(group); 
-	ve[idx]->nodesstr.push_back("stl/robot_armj3.stl"); 
+	ve[idx]->nodesstr.push_back("stl/robot morango_armj3.stl"); 
 	ve[idx]->axis=vec3(0,1,0);
 	ve[idx]->anglemin=0;
 	ve[idx]->anglemax=160;
@@ -1353,7 +1353,7 @@ void geraeixos(Group* group){
 	idx=4;
 	ve.resize(idx+1);
 	ve[idx]=new osgdr(group); 
-	ve[idx]->nodesstr.push_back("stl/robot_armj4.stl"); 
+	ve[idx]->nodesstr.push_back("stl/robot morango_armj4.stl"); 
 	ve[idx]->axis=vec3(1,0,0);
 	ve[idx]->anglemin=0;
 	ve[idx]->anglemax=170;
