@@ -1285,7 +1285,8 @@ void geraeixos(Group* group){
 	
 	// vec3* offset=new vec3(0,0,0);
 	//robot offset
-	vec3* offset=new vec3(610-110,272+70,-300);
+	int off_bucket=130; //off_bottom_from_250bucket
+	vec3* offset=new vec3(610-110,272+off_bucket,-300);
 	
 	
 	carril=new osgdr(group);
@@ -1305,7 +1306,7 @@ void geraeixos(Group* group){
 	ve[idx]->anglemax=230;
 	ve[idx]->anglemin=-90;
 	ve[idx]->offset=offset;
-	ve[idx]->newdr(vec3(110,250-70,-20),vec3(110,250-70,200));
+	ve[idx]->newdr(vec3(110,250-off_bucket,-20),vec3(110,250-off_bucket,200));
 		
 	idx=1;
 	ve.resize(idx+1);
@@ -1317,7 +1318,7 @@ void geraeixos(Group* group){
 	ve[idx]->anglemax=200;
 	// ve[idx]->rotatedir=-1;
 	ve[idx]->offset=offset;
-	ve[idx]->newdr(vec3(0,250-20,-42.0),vec3(0,250+50,-42.0));
+	ve[idx]->newdr(vec3(0,127.18,-42.0),vec3(0,127.18+50,-42.0));
 		
 	// idx=2;
 	// ve.resize(idx+1);
@@ -1338,7 +1339,7 @@ void geraeixos(Group* group){
 	ve[idx]->anglemin=0;
 	ve[idx]->anglemax=90;
 	ve[idx]->offset=offset;
-	ve[idx]->newdr(vec3(-66.61,271,-42.19),vec3(-150,271,-42.19));
+	ve[idx]->newdr(vec3(-66.61,271-off_bucket,-42.19),vec3(-150,271-off_bucket,-42.19));
 	
 	idx=3;
 	ve.resize(idx+1);
@@ -1358,7 +1359,7 @@ void geraeixos(Group* group){
 	ve[idx]->anglemin=0;
 	ve[idx]->anglemax=170;
 	ve[idx]->offset=offset;
-	ve[idx]->newdr(vec3(-459.61,231,-42.19),vec3(-600,231,-42.19));
+	ve[idx]->newdr(vec3(-459.61,127,-42.19),vec3(-600,127,-42.19));
  
 	goffset(offset);
 	
